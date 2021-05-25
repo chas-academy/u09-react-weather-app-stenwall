@@ -4,22 +4,9 @@ School Assignment @ Chas Academy, class FWD20
 
 ---
 
-## Getting started
+>In this assignment, you will use the React library to build an application that displays weather based on the user's current position.
 
-Clone repo and run:
-
-```sh
-$ npm install
-$ npm start
-```
-
-## API
-
-## Assignment
-
-During this assignment, you will use the React library to build an application that displays weather based on the user's current position.
-
-### Requirements
+## Requirements
 
 As a user, you should be able to do:
 
