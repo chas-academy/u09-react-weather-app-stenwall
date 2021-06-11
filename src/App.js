@@ -6,12 +6,14 @@ import ErrorMessage from './components/error_message';
 
 const App = () => {
   const [data, setData] = useState(null),
-        [locationName, setLocationName] = useState(null),
-        [locationId, setLocationId] = useState(null),
+        [locationName, setLocationName] = useState(''),
+        [locationId, setLocationId] = useState(''),
+        [loading, setLoading] = useState(false),
         [error, setError] = useState('');
 
   const addLocation = (query) => {
-    setError('');
+    setError(null);
+    setLoading(true);
 
     FETCH(query)
       .then((response) => {
@@ -29,21 +31,9 @@ const App = () => {
         console.error('Error fetching data: ', error);
         setError(`No location found called '${query}'`);
       })
-      // .finally(() => {
-      //   setLoading(false);
-      // });
-
-    // const data = searchLocation(term);
-    // console.log(data);
-    // if (!data) {
-    //   setError(`No location found called '${term}'`);
-    // // } else if (locations.find((item) => item.id === location.id)) {
-    // //   setWarning(`Location '${term}' is already in the list.`);
-    // } else {
-    //   setLocationId(data.id);
-    //   setLocationName(data.name);
-    //   console.log(data.name);
-    // }
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -54,10 +44,18 @@ const App = () => {
 
       {error ? <ErrorMessage message={error} /> : null}
 
-      <pre>{JSON.stringify(data)}</pre>
+      {!loading && (
+        <>
+          <pre>{JSON.stringify(data)}</pre>
 
-      {locationId && <p>Location id: {locationId}</p>}
-      {locationName && <p>Location name: {locationName}</p>}
+          {locationId && <p>Location id: {locationId}</p>}
+          {locationName && <p>Location name: {locationName}</p>}
+        </>
+      )}
+      
+      {loading && (
+        <p>Loading...</p>
+      )}
 
     </>
   );
