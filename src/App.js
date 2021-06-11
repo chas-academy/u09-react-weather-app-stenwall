@@ -10,24 +10,6 @@ const App = () => {
         [locationId, setLocationId] = useState(null),
         [error, setError] = useState('');
 
-  // useEffect(() => {
-  //   FETCH('https://randomuser.me/api')
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       }
-  //       throw response;
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching data: ', error);
-  //       setError(error);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // }, []);
-  // if (loading) return 'Loading...';
-
   const resetAlert = () => {
     setError('');
   };
@@ -81,7 +63,6 @@ const App = () => {
       {locationId && <p>Location id: {locationId}</p>}
       {locationName && <p>Location name: {locationName}</p>}
 
-      {/* <LocationTable locations={locations} /> */}
     </>
   );
 };
