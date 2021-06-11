@@ -1,8 +1,8 @@
 // import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import React, { useState } from 'react';
-import LocationTable from './components/location_table';
 import Search from './components/search';
 import { FETCH } from '../src/services/WeatherService';
+import ErrorMessage from './components/error_message';
 
 const App = () => {
   const [data, setData] = useState(null),
@@ -10,12 +10,8 @@ const App = () => {
         [locationId, setLocationId] = useState(null),
         [error, setError] = useState('');
 
-  const resetAlert = () => {
-    setError('');
-  };
-
   const addLocation = (query) => {
-    resetAlert();
+    setError('');
 
     FETCH(query)
       .then((response) => {
@@ -31,7 +27,7 @@ const App = () => {
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
-        setError(error);
+        setError(`No location found called '${query}'`);
       })
       // .finally(() => {
       //   setLoading(false);
@@ -56,7 +52,7 @@ const App = () => {
 
       <Search onSearch={addLocation} />
 
-      {error ? <div>{error}</div> : null}
+      {error ? <ErrorMessage message={error} /> : null}
 
       <pre>{JSON.stringify(data)}</pre>
 
