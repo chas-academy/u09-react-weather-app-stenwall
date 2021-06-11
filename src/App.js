@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import LocationTable from './components/location_table';
+import Search from './components/search';
 
-function App() {
+const App = () => {
+  const [locations, setLocations] = useState([]);
+
+  const addLocation = (location) => {
+    setLocations([location, ...locations]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>What's the weather like?</h1>
+
+      <Search
+        onSearch={addLocation}
+      />
+
+      <LocationTable
+        locations={locations}
+      />
+
+    </>
   );
-}
+};
 
 export default App;
