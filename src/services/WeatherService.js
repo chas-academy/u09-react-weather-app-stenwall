@@ -7,13 +7,13 @@ if (apiKey === undefined) {
 const apiBaseURL = 'http://api.openweathermap.org/data/2.5';
 const keyQuery = `appid=${apiKey}`
 
-export const searchLocation = async (term) => {
-  const result = fetch(`${apiBaseURL}/weather?q=${term}&${keyQuery}`);
+export const FETCH = (query) => {
+  return fetch(`${apiBaseURL}/weather?q=${query}&${keyQuery}`);
 
-  if (result.status === 404) return undefined;
-  if (result.status !== 200) throw new Error('Failed to read location data');
+//   if (result.status === 404) return undefined;
+//   if (result.status !== 200) throw new Error('Failed to read location data');
 
-  return await result.json();
+//   return await result.json();
 }
 
 // axios.interceptors.request.use(
