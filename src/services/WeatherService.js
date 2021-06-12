@@ -8,20 +8,27 @@ const apiBaseURL = 'http://api.openweathermap.org/data/2.5';
 const keyQuery = `appid=${apiKey}`
 
 export const FETCH = (query) => {
-  return fetch(`${apiBaseURL}/weather?q=${query}&${keyQuery}`);
-
-//   if (result.status === 404) return undefined;
-//   if (result.status !== 200) throw new Error('Failed to read location data');
-
-//   return await result.json();
+  return fetch(`${apiBaseURL}/${query}&${keyQuery}`)
+    .then((response) => {
+      if (response.ok) {
+      return response.json();
+      }
+      throw response;
+    });
 }
 
-// axios.interceptors.request.use(
-//   (config) => {
-//     // Add configurations here
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+// export const 
+// FETCH(`weather?id=${location.id}&units=metric`)
+//   .then((weather) => {
+//     setWeather(weather);
+//   })
+//   .catch((error) => {
+//     console.error('Failed to read location data: ', error);
+//   }),
+//   FETCH(`forecast?id=${location.id}&units=metric&cnt=8`).then((forecast) => {
+//     setForecast(forecast);
+//   });
+
+export const getIconUrl = (code) => {
+  return `http://openweathermap.org/img/wn/${code}.png`;  
+}
