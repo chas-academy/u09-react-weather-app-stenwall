@@ -5,10 +5,10 @@ import { FETCH } from '../src/services/WeatherService';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
+import WeatherSummary from './components/weather_summary';
 
 const App = () => {
-  const [data, setData] = useState(null),
-        [locations, setLocations] = useState([]),
+  const [locations, setLocations] = useState([]),
         [currentLocation, setCurrentLocation] = useState(''),
         [loading, setLoading] = useState(false),
         [error, setError] = useState(null),
@@ -19,13 +19,7 @@ const App = () => {
     setWarning(null);
     setLoading(true);
 
-    FETCH(query)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
+    FETCH(`weather?q=${query}`)
       .then(data => {
         setCurrentLocation(data);
       })
@@ -54,13 +48,9 @@ const App = () => {
 
       {!loading && (
         <>
-          <pre>{JSON.stringify(data)}</pre>
-
           {currentLocation && (
             <>
-              <p>Current location: {currentLocation.name}</p>
-              <p>Location id: {currentLocation.id}</p>
-
+              <WeatherSummary location={currentLocation} />
               <button onClick={addToList}>Add to list</button>
             </>
           )}
