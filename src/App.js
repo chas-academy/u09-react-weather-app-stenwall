@@ -2,17 +2,21 @@
 import React, { useState } from 'react';
 import Search from './components/search';
 import { FETCH } from '../src/services/WeatherService';
-import ErrorMessage from './components/error_message';
+import MessageError from './components/message_error';
+import MessageWarning from './components/message_warning';
+import LocationList from './components/location_list';
 
 const App = () => {
   const [data, setData] = useState(null),
-        [locationName, setLocationName] = useState(''),
-        [locationId, setLocationId] = useState(''),
+        [locations, setLocations] = useState([]),
+        [currentLocation, setCurrentLocation] = useState(''),
         [loading, setLoading] = useState(false),
-        [error, setError] = useState('');
+        [error, setError] = useState(null),
+        [warning, setWarning] = useState(null);
 
-  const addLocation = (query) => {
+  const searchLocation = (query) => {
     setError(null);
+    setWarning(null);
     setLoading(true);
 
     FETCH(query)
@@ -23,9 +27,7 @@ const App = () => {
         throw response;
       })
       .then(data => {
-        setData(data);
-        setLocationName(JSON.stringify(data.name));
-        setLocationId(JSON.stringify(data.id));
+        setCurrentLocation(data);
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
@@ -36,27 +38,50 @@ const App = () => {
       });
   };
 
+  const addToList = () => {
+    if (locations.find((item) => item.id === currentLocation.id)) {
+      setWarning(`'${currentLocation.name}' is already in the list`);
+    }
+    setLocations([currentLocation, ...locations]);
+  }
+
   return (
     <>
       <h1>What's the weather like?</h1>
 
-      <Search onSearch={addLocation} />
+      <Search onSearch={searchLocation} />
 
-      {error ? <ErrorMessage message={error} /> : null}
+      {error ? <MessageError message={error} /> : null}
 
       {!loading && (
         <>
           <pre>{JSON.stringify(data)}</pre>
 
-          {locationId && <p>Location id: {locationId}</p>}
-          {locationName && <p>Location name: {locationName}</p>}
+          {currentLocation && (
+            <>
+              <p>Current location: {currentLocation.name}</p>
+              <p>Location id: {currentLocation.id}</p>
+            </>
+          )}
+
+          <button onClick={addToList}>Add to list</button>
+
+          {warning ? <MessageWarning message={warning} /> : null}
+
+          <h2>Saved locations</h2>
+          <ul>
+            {locations.map((location) => (
+              <li key={location.id}>
+                {location.name}
+              </li>
+            ))}
+          </ul>
+
+          <LocationList />
         </>
       )}
-      
-      {loading && (
-        <p>Loading...</p>
-      )}
 
+      {loading && <p>Loading...</p>}
     </>
   );
 };
