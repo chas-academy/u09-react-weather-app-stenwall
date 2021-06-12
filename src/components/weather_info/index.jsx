@@ -2,26 +2,33 @@ import React from 'react';
 import './WeatherInfo.scss';
 import { getIconUrl } from '../../services/WeatherService';
 
-const convertUnixTimeToDate = (unixUtc) => {
-  return new Date(unixUtc * 1000);
+const unixTimeToDate = (unixUTC) => {
+  return new Date(unixUTC * 1000);
 }
 
 const timeOptions = {
+  weekday: 'long',
   hour: '2-digit',
   minute: '2-digit',
   timeZoneName: 'short'
+};
+
+const sunOptions = {
+  hour: '2-digit',
+  minute: '2-digit'
 };
 
 const WeatherInfo = ({ weather }) => {
   return (
     <>
       <div>
-        {convertUnixTimeToDate(weather.dt).toLocaleTimeString([], timeOptions)}
+        {unixTimeToDate(weather.dt).toLocaleTimeString([], timeOptions)}
       </div>
       <div>
-        <strong>{weather.main.temp}°C</strong>
+        <strong>{Math.round(weather.main.temp)}°C</strong>
         <div>
-          ({weather.main.temp_min}°C / {weather.main.temp_max}°C)
+          ({Math.round(weather.main.temp_min)}°C /{' '}
+          {Math.round(weather.main.temp_max)}°C)
         </div>
       </div>
       <div>Humidity: {weather.main.humidity}%</div>
@@ -32,6 +39,12 @@ const WeatherInfo = ({ weather }) => {
           {condition.main} {condition.description}
         </div>
       ))}
+      <div>
+        Sunrise:{' '}
+        {unixTimeToDate(weather.sys.sunrise).toLocaleTimeString([], sunOptions)}{' '}
+        | Sunset:{' '}
+        {unixTimeToDate(weather.sys.sunset).toLocaleTimeString([], sunOptions)}
+      </div>
     </>
   );
 }
