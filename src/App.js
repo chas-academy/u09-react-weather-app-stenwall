@@ -39,10 +39,9 @@ const App = () => {
   };
 
   const addToList = () => {
-    if (locations.find((item) => item.id === currentLocation.id)) {
-      setWarning(`'${currentLocation.name}' is already in the list`);
-    }
-    setLocations([currentLocation, ...locations]);
+    locations.find((item) => item.id === currentLocation.id)
+      ? setWarning(`'${currentLocation.name}' is already in the list`)
+      : setLocations([currentLocation, ...locations]);
   }
 
   return (
@@ -51,7 +50,7 @@ const App = () => {
 
       <Search onSearch={searchLocation} />
 
-      {error ? <MessageError message={error} /> : null}
+      {error ? <MessageError messageErr={error} /> : null}
 
       {!loading && (
         <>
@@ -61,23 +60,27 @@ const App = () => {
             <>
               <p>Current location: {currentLocation.name}</p>
               <p>Location id: {currentLocation.id}</p>
+
+              <button
+                onClick={addToList}
+              >
+                Add to list
+              </button>
             </>
           )}
 
-          <button onClick={addToList}>Add to list</button>
-
-          {warning ? <MessageWarning message={warning} /> : null}
+          {warning ? <MessageWarning messageWarn={warning} /> : null}
 
           <h2>Saved locations</h2>
           <ul>
             {locations.map((location) => (
-              <li key={location.id}>
-                {location.name}
-              </li>
+              <li key={location.id}>{location.name}</li>
             ))}
           </ul>
 
-          <LocationList />
+          <LocationList
+            locations={locations}
+          />
         </>
       )}
 
