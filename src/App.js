@@ -61,25 +61,16 @@ const App = () => {
               <p>Current location: {currentLocation.name}</p>
               <p>Location id: {currentLocation.id}</p>
 
-              <button
-                onClick={addToList}
-              >
-                Add to list
-              </button>
+              <button onClick={addToList}>Add to list</button>
             </>
           )}
 
           {warning ? <MessageWarning messageWarn={warning} /> : null}
 
-          <h2>Saved locations</h2>
-          <ul>
-            {locations.map((location) => (
-              <li key={location.id}>{location.name}</li>
-            ))}
-          </ul>
-
           <LocationList
             locations={locations}
+            current={currentLocation}
+            onSelect={(location) => setCurrentLocation(location)}
           />
         </>
       )}
