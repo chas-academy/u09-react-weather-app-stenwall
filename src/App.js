@@ -6,6 +6,7 @@ import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
 import WeatherSummary from './components/weather_summary';
+import GeoLocation from './components/geo_location';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
@@ -41,6 +42,8 @@ const App = () => {
   return (
     <>
       <h1>What's the weather like?</h1>
+
+      <GeoLocation />
 
       <Search onSearch={searchLocation} />
 

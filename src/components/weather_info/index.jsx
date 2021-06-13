@@ -11,12 +11,12 @@ const timeOptions = {
   hour: '2-digit',
   minute: '2-digit',
   timeZoneName: 'short'
-};
+}
 
 const sunOptions = {
   hour: '2-digit',
   minute: '2-digit'
-};
+}
 
 const WeatherInfo = ({ weather }) => {
   return (
