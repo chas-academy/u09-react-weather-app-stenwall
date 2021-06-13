@@ -1,34 +1,41 @@
 import React, { useState } from 'react';
 import './Search.scss';
 
-const Search = ({onSearch}) => {
-  const [locationSearch, setLocationSearch] = useState('');
+const Search = ({ id, placeholder, onSearch }) => {
+  const [value, setValue] = useState('');
 
-  const disableSearch = locationSearch.trim() === '';
+  const disableSearch = value.trim() === '';
 
-  const addLocation = () => {
-    onSearch(locationSearch);
-    setLocationSearch('');
-  };
+  const searchLocation = (e) => {
+    e.preventDefault();
+    onSearch(value);
+    setValue('');
+  }
 
   return (
     <>
-      <label>
-        Add Location
-      </label>
+      <form onSubmit={searchLocation}>
+        <label htmlFor={id}>
+          {placeholder}
+        </label>
         <input
+          id={id}
           type="text"
-          value={locationSearch}
-          onChange={(e) => setLocationSearch(e.target.value)}
+          placeholder={placeholder}
+          value={value}
+          // name="search"
+          onChange={(e) => setValue(e.target.value)}
         />
-      <button
-        onClick={addLocation}
-        disabled={disableSearch}
-      >
-        Search
-      </button>
+        <button
+          type="submit"
+          disabled={disableSearch}
+          // onClick={searchLocation}
+        >
+          Search
+        </button>
+      </form>
     </>
   );
-};
+}
 
 export default Search;

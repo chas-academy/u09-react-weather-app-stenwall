@@ -6,10 +6,11 @@ import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
 import WeatherSummary from './components/weather_summary';
-import GeoLocation from './components/geo_location';
+// import GeoLocation from './components/geo_location';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
+        // [searchResult, setSearchResult] = useState([]),
         [currentLocation, setCurrentLocation] = useState(''),
         [loading, setLoading] = useState(false),
         [error, setError] = useState(null),
@@ -21,7 +22,7 @@ const App = () => {
     setLoading(true);
 
     FETCH(`weather?q=${query}`)
-      .then(data => {
+      .then((data) => {
         setCurrentLocation(data);
       })
       .catch((error) => {
@@ -31,6 +32,9 @@ const App = () => {
       .finally(() => {
         setLoading(false);
       });
+
+    console.log(query);
+    console.log(currentLocation);
   };
 
   const addToList = () => {
@@ -43,11 +47,15 @@ const App = () => {
     <>
       <h1>What's the weather like?</h1>
 
-      <GeoLocation />
+      {/* <GeoLocation /> */}
 
-      <Search onSearch={searchLocation} />
+      <Search
+        id="search-bar"
+        placeholder="search for a location..."
+        onSearch={searchLocation}
+      />
 
-      {error ? <MessageError messageErr={error} /> : null}
+      {error && <MessageError messageErr={error} />}
 
       {!loading && (
         <>
@@ -58,7 +66,7 @@ const App = () => {
             </>
           )}
 
-          {warning ? <MessageWarning messageWarn={warning} /> : null}
+          {warning && <MessageWarning messageWarn={warning} />}
 
           <LocationList
             locations={locations}
