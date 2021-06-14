@@ -1,16 +1,14 @@
 // import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from './components/search';
 import { FETCH } from '../src/services/WeatherService';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
 import WeatherSummary from './components/weather_summary';
-// import GeoLocation from './components/geo_location';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
-        // [searchResult, setSearchResult] = useState([]),
         [currentLocation, setCurrentLocation] = useState(''),
         [loading, setLoading] = useState(false),
         [error, setError] = useState(null),
@@ -21,20 +19,7 @@ const App = () => {
     setWarning(null);
     setLoading(true);
 
-    FETCH(`weather?q=${query}`)
-      .then((data) => {
-        setCurrentLocation(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data: ', error);
-        setError(`No location found called '${query}'`);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-
-    console.log(query);
-    console.log(currentLocation);
+    fetchPosition(`q=${query}`)
   };
 
   const addToList = () => {
@@ -43,11 +28,53 @@ const App = () => {
       : setLocations([currentLocation, ...locations]);
   }
 
+  const fetchPosition = (query) => {
+    FETCH(`weather?${query}`)
+      .then((data) => {
+        setCurrentLocation(data);
+        console.log(data.name);
+      })
+      .catch((error) => {
+        console.error(`Error fetching data with query: '${error}'`);
+        setError(query);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    if (!currentLocation) {
+      setLoading(true);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lon = position.coords.longitude;
+            const lat = position.coords.latitude;
+            fetchPosition(`lat=${lat}&lon=${lon}`)
+            console.log('position updated!');
+          },
+          (error) => {
+            console.error(`ERROR (${error.code}): ${error.message}`);
+          },
+          {
+            timeout: 500,
+            maximumAge: 600_000,
+            enableHighAccuracy: false,
+          }
+        );
+      } else {
+        alert(
+          'GeoLocation not available, please select your location manually with the search function'
+        );
+        setLoading(false);
+      }
+    }
+  }, [loading, currentLocation]);
+
   return (
     <>
       <h1>What's the weather like?</h1>
-
-      {/* <GeoLocation /> */}
 
       <Search
         id="search-bar"
