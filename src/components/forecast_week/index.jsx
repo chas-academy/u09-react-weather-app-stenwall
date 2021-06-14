@@ -1,6 +1,5 @@
 import React from 'react';
 import './ForecastWeek.scss';
-import { getIconUrl } from '../../services/WeatherService';
 
 const unixTimeToDate = (unixUTC) => {
   return new Date(unixUTC * 1000);
@@ -12,24 +11,21 @@ const options = {
   month: 'short'
 };
 
-const ForecastWeek = ({ weather }) => {
+const ForecastWeek = ({ weather, time, temp, details, tod }) => {
   return (
     <>
-      <div>{unixTimeToDate(weather.dt).toLocaleDateString([], options)}</div>
-      <div>{Math.round(weather.temp.day)}°C</div>
-      {weather.weather.map((condition) => (
-        <div key={condition.id}>
-          <img src={getIconUrl(condition.icon)} alt={condition.main} />
-          {condition.description}
-        </div>
-      ))}
+      <div>{unixTimeToDate(time).toLocaleDateString([], options)}</div>
+      <strong>{Math.round(temp.day)}°C</strong>
+      <div>
+        <i className={`wi wi-owm-${tod}-${details.id}`}></i>
+        <p>{details.main}</p>
+        <p>{details.description}</p>
+      </div>
       <div>Humidity: {weather.humidity} %</div>
       <div>
         Wind: {weather.wind_speed} ({weather.wind_gust}) m/s
       </div>
-      <div>
-        Rain: {weather.rain} mm
-      </div>
+      <div>Rain: {weather.rain} mm</div>
     </>
   );
 };

@@ -47,7 +47,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    setLocations(JSON.parse(localStorage.getItem('list') || null));
+    if (localStorage.getItem('list')) {
+      setLocations(JSON.parse(localStorage.getItem('list')));
+    }
+
     if (!currentLocation) {
       setLoading(true);
       if (navigator.geolocation) {

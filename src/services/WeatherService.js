@@ -16,19 +16,3 @@ export const FETCH = (query) => {
       throw response;
     });
 }
-
-// export const 
-// FETCH(`weather?id=${location.id}&units=metric`)
-//   .then((weather) => {
-//     setWeather(weather);
-//   })
-//   .catch((error) => {
-//     console.error('Failed to read location data: ', error);
-//   }),
-//   FETCH(`forecast?id=${location.id}&units=metric&cnt=8`).then((forecast) => {
-//     setForecast(forecast);
-//   });
-
-export const getIconUrl = (code) => {
-  return `http://openweathermap.org/img/wn/${code}.png`;  
-}

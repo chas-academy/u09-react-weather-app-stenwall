@@ -1,6 +1,5 @@
 import React from 'react';
 import './ForecastDay.scss';
-import { getIconUrl } from '../../services/WeatherService';
 
 const unixTimeToDate = (unixUTC) => {
   return new Date(unixUTC * 1000);
@@ -13,25 +12,18 @@ const options = {
   timeZoneName: 'short',
 };
 
-const ForecastDay = ({ weather }) => {
+const ForecastDay = ({ weather, time, wind, details, tod }) => {
   return (
     <>
-      <div>{unixTimeToDate(weather.dt).toLocaleTimeString([], options)}</div>
+      <div>{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
+      <strong>{Math.round(weather.main.temp)}&deg;</strong>
+      <div>Humidity: {weather.humidity}%</div>
+      <div>Wind: {wind.speed}m/s</div>
       <div>
-        <strong>{Math.round(weather.main.temp)}&deg;</strong>
-        <div>
-          ({Math.round(weather.main.temp_min)}&deg; /{' '}
-          {Math.round(weather.main.temp_max)}&deg;)
-        </div>
+        <i className={`wi wi-owm-${tod}-${details.id}`}></i>
+        <p>{details.main}</p>
+        <p>{details.description}</p>
       </div>
-      <div>Humidity: {weather.main.humidity}%</div>
-      <div>Wind: {weather.wind.speed}m/s</div>
-      {weather.weather.map((condition) => (
-        <div key={condition.id}>
-          <img src={getIconUrl(condition.icon)} alt={condition.main} />
-          {condition.main} {condition.description}
-        </div>
-      ))}
     </>
   );
 };
