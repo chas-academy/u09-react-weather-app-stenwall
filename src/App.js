@@ -23,9 +23,12 @@ const App = () => {
   };
 
   const addToList = () => {
-    locations.find((item) => item.id === currentLocation.id)
-      ? setWarning(`'${currentLocation.name}' is already in the list`)
-      : setLocations([currentLocation, ...locations]);
+    if (locations.find((item) => item.id === currentLocation.id)) {
+      setWarning(`'${currentLocation.name}' is already in the list`)
+    } else {
+      setLocations([currentLocation, ...locations]);
+      localStorage.setItem('list', JSON.stringify([currentLocation, ...locations])); 
+    }
   }
 
   const fetchPosition = (query) => {
@@ -44,6 +47,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    setLocations(JSON.parse(localStorage.getItem('list') || null));
     if (!currentLocation) {
       setLoading(true);
       if (navigator.geolocation) {
