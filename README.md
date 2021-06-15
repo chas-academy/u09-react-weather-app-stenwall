@@ -15,7 +15,7 @@ As a user, you should be able to do:
   - [x] Wind strength
   - [x] Humidity
   - [x] Sunrise and sunset (time)
-  - [ ] Choose between Farenheit and Celsius
+  - [x] Choose between Farenheit and Celsius
 - [x] Get a forecast for weather conditions (as above) 5 days ahead
   - [x] Brief overview for the week
   - [x] Every three hours for the current day

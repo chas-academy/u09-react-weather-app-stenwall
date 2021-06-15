@@ -10,6 +10,7 @@ import WeatherSummary from './components/weather_summary';
 const App = () => {
   const [locations, setLocations] = useState([]),
         [currentLocation, setCurrentLocation] = useState(''),
+        [units, setUnits] = useState({unit: 'metric', deg: 'C', speed: 'm/s'}),
         [loading, setLoading] = useState(false),
         [error, setError] = useState(null),
         [warning, setWarning] = useState(null);
@@ -84,10 +85,13 @@ const App = () => {
       <h1>What's the weather like?</h1>
 
       <Search
-        id="search-bar"
-        placeholder="search for a location..."
+        id='search-bar'
+        placeholder='search for a location...'
         onSearch={searchLocation}
       />
+
+      <button onClick={() => setUnits({unit: 'metric', deg: 'C', speed: 'm/s'})}>°C</button>
+      <button onClick={() => setUnits({unit: 'imperial', deg: 'F', speed: 'mph'})}>°F</button>
 
       {error && <MessageError messageErr={error} />}
 
@@ -95,7 +99,7 @@ const App = () => {
         <>
           {currentLocation && (
             <>
-              <WeatherSummary location={currentLocation} />
+              <WeatherSummary location={currentLocation} units={units} />
               <button onClick={addToList}>Add to list</button>
             </>
           )}

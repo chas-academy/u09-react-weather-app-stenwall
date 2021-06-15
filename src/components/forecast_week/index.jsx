@@ -11,21 +11,30 @@ const options = {
   month: 'short'
 };
 
-const ForecastWeek = ({ weather, time, temp, details, tod }) => {
+const ForecastWeek = ({ weather, time, temp, details, tod, units }) => {
   return (
     <>
       <div>{unixTimeToDate(time).toLocaleDateString([], options)}</div>
-      <strong>{Math.round(temp.day)}°C</strong>
+      <strong>
+        {Math.round(temp.day)}°{units.deg}
+      </strong>
       <div>
         <i className={`wi wi-owm-${tod}-${details.id}`}></i>
-        <p>{details.main}</p>
-        <p>{details.description}</p>
+        <div>{details.main}</div>
+        <div>{details.description}</div>
       </div>
-      <div>Humidity: {weather.humidity} %</div>
       <div>
-        Wind: {weather.wind_speed} ({weather.wind_gust}) m/s
+        <i className={`wi wi-humidity`}></i>
+        Humidity: {weather.humidity} %
       </div>
-      <div>Rain: {weather.rain} mm</div>
+      <div>
+        <i className={`wi wi-wind from-${weather.wind_deg}-deg`}></i>
+        Wind: {weather.wind_speed} ({weather.wind_gust}) {units.speed}
+      </div>
+      <div>
+        <i className={`wi wi-umbrella`}></i>
+        Rain: {weather.rain || '0'} mm
+      </div>
     </>
   );
 };

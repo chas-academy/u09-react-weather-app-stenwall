@@ -12,17 +12,22 @@ const options = {
   timeZoneName: 'short',
 };
 
-const ForecastDay = ({ weather, time, wind, details, tod }) => {
+const ForecastDay = ({ weather, time, wind, details, tod, units }) => {
   return (
     <>
       <div>{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
-      <strong>{Math.round(weather.main.temp)}&deg;</strong>
+      <strong>
+        {Math.round(weather.temp)}&deg;{units.deg}
+      </strong>
       <div>Humidity: {weather.humidity}%</div>
-      <div>Wind: {wind.speed}m/s</div>
+      <div>
+        <i className={`wi wi-wind from-${wind.deg}-deg`}></i>
+        Wind: {wind.speed} ({wind.gust}) {units.speed}
+      </div>
       <div>
         <i className={`wi wi-owm-${tod}-${details.id}`}></i>
-        <p>{details.main}</p>
-        <p>{details.description}</p>
+        <div>{details.main}</div>
+        <div>{details.description}</div>
       </div>
     </>
   );

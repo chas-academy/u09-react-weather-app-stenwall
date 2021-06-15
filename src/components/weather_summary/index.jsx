@@ -5,7 +5,7 @@ import ForecastWeek from '../forecast_week';
 import CurrentWeather from '../current_weather';
 import './WeatherSummary.scss';
 
-const WeatherSummary = ({ location }) => {
+const WeatherSummary = ({ location, units, deg }) => {
   const [weather, setWeather] = useState(null),
         [forecastDay, setForecastDay] = useState(null),
         [forecastWeek, setForecastWeek] = useState(null),
@@ -17,16 +17,16 @@ const WeatherSummary = ({ location }) => {
     (async () => {
       if (location) {
         await Promise.all([
-          FETCH(`weather?id=${location.id}&units=metric`)
+            FETCH(`weather?id=${location.id}&units=${units.unit}`)
             .then((data) => {
               setWeather(data);
             }),
-          FETCH(`forecast?id=${location.id}&units=metric&cnt=8`)
+          FETCH(`forecast?id=${location.id}&units=${units.unit}&cnt=8`)
             .then((data) => {
               setForecastDay(data.list);
               console.log(data.list);
             }),
-          FETCH(`onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=metric`)
+          FETCH(`onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`)
             .then((data) => {
               setForecastWeek(data.daily);
             }),
@@ -36,7 +36,7 @@ const WeatherSummary = ({ location }) => {
           });
       }
     })();
-  }, [location])
+  }, [location, units])
 
   // const [timeOfDay, setTimeOfDay] = useState('');
 
@@ -50,7 +50,7 @@ const WeatherSummary = ({ location }) => {
 
   return (
     <>
-      {!loading && location && (
+      {!loading && location &&  (
         <>
           <h2>{location.name}</h2>
           <i className='wi wi-night-sleet'></i>
@@ -62,6 +62,7 @@ const WeatherSummary = ({ location }) => {
               wind={weather.wind}
               sun={weather.sys}
               tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+              units={units}
             />
           )}
 
@@ -71,11 +72,12 @@ const WeatherSummary = ({ location }) => {
               forecastDay.map((weather) => (
                 <li key={weather.dt}>
                   <ForecastDay
-                    weather={weather}
+                    weather={weather.main}
                     time={weather.dt}
                     wind={weather.wind}
                     details={weather.weather[0]}
                     tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                    units={units}
                   />
                 </li>
               ))}
@@ -93,6 +95,7 @@ const WeatherSummary = ({ location }) => {
                     temp={weather.temp}
                     details={weather.weather[0]}
                     tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                    units={units}
                   />
                 </li>
               ))}

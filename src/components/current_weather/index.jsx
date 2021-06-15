@@ -1,7 +1,7 @@
 import React from 'react';
 import './CurrentWeather.scss';
 
-const CurrentWeather = ({ time, weather, details, wind, sun, tod }) => {
+const CurrentWeather = ({ time, weather, details, wind, sun, tod, units }) => {
 
   const unixTimeToDate = (unixUTC) => {
     return new Date(unixUTC * 1000);
@@ -21,28 +21,30 @@ const CurrentWeather = ({ time, weather, details, wind, sun, tod }) => {
 
   return (
     <>
+      <div>{unixTimeToDate(time).toLocaleTimeString([], timeOptions)}</div>
       <div>
-        {unixTimeToDate(time).toLocaleTimeString([], timeOptions)}
-      </div>
-      <div>
-        <strong>{Math.round(weather.temp)}°C</strong>
+        <strong>
+          {Math.round(weather.temp)}°{units.deg}
+        </strong>
         <div>
-          ({Math.round(weather.temp_min)}°C /{' '}
-          {Math.round(weather.temp_max)}°C)
+          ({Math.round(weather.temp_min)}°{units.deg} /{' '}
+          {Math.round(weather.temp_max)}°{units.deg})
         </div>
       </div>
       <div>Humidity: {weather.humidity}%</div>
-      <div>Wind: {wind.speed}m/s</div>
-        <div>
-          <i className={`wi wi-owm-${tod}-${details.id}`}></i>
-          {details.main}
-          {details.description}
-        </div>
+      <div>
+        <i className={`wi wi-wind from-${wind.deg}-deg`}></i>
+        Wind: {wind.speed} ({wind.gust}) {units.speed}
+      </div>
+      <div>
+        <i className={`wi wi-owm-${tod}-${details.id}`}></i>
+        {details.main}
+        {details.description}
+      </div>
       <div>
         Sunrise:{' '}
-        {unixTimeToDate(sun.sunrise).toLocaleTimeString([], sunOptions)}{' '}
-        | Sunset:{' '}
-        {unixTimeToDate(sun.sunset).toLocaleTimeString([], sunOptions)}
+        {unixTimeToDate(sun.sunrise).toLocaleTimeString([], sunOptions)} |
+        Sunset: {unixTimeToDate(sun.sunset).toLocaleTimeString([], sunOptions)}
       </div>
     </>
   );
