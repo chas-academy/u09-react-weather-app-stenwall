@@ -3,9 +3,9 @@ import { FETCH } from '../../services/WeatherService';
 import ForecastDay from '../forecast_day';
 import ForecastWeek from '../forecast_week';
 import CurrentWeather from '../current_weather';
-import './WeatherSummary.scss';
+import './Main.scss';
 
-const WeatherSummary = ({ location, units, deg }) => {
+const Main = ({ location, units }) => {
   const [weather, setWeather] = useState(null),
         [forecastDay, setForecastDay] = useState(null),
         [forecastWeek, setForecastWeek] = useState(null),
@@ -51,7 +51,7 @@ const WeatherSummary = ({ location, units, deg }) => {
   return (
     <>
       {!loading && location &&  (
-        <>
+        <div id='wrapper' className='gradient-day-clear'>
           <h2>{location.name}</h2>
           <i className='wi wi-night-sleet'></i>
           {weather && (
@@ -81,7 +81,6 @@ const WeatherSummary = ({ location, units, deg }) => {
                   />
                 </li>
               ))}
-              {/* <pre>{forecastDay}</pre> */}
           </ol>
 
           <h2>7 day forecast</h2>
@@ -100,7 +99,7 @@ const WeatherSummary = ({ location, units, deg }) => {
                 </li>
               ))}
           </ol>
-        </>
+        </div>
       )}
 
       {loading && <p>Loading...</p>}
@@ -108,4 +107,4 @@ const WeatherSummary = ({ location, units, deg }) => {
   );
 }
 
-export default WeatherSummary;
+export default Main;
