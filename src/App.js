@@ -5,12 +5,13 @@ import { FETCH } from '../src/services/WeatherService';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
-import WeatherSummary from './components/weather_summary';
+import Main from './components/main';
+import './styling/style.scss';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
         [currentLocation, setCurrentLocation] = useState(''),
-        [units, setUnits] = useState({unit: 'metric', deg: 'C', speed: 'm/s'}),
+        [units, setUnits] = useState({ unit: 'metric', deg: 'C', speed: 'm/s' }),
         [loading, setLoading] = useState(false),
         [error, setError] = useState(null),
         [warning, setWarning] = useState(null);
@@ -20,17 +21,20 @@ const App = () => {
     setWarning(null);
     setLoading(true);
 
-    fetchPosition(`q=${query}`)
+    fetchPosition(`q=${query}`);
   };
 
   const addToList = () => {
     if (locations.find((item) => item.id === currentLocation.id)) {
-      setWarning(`'${currentLocation.name}' is already in the list`)
+      setWarning(`'${currentLocation.name}' is already in the list`);
     } else {
       setLocations([currentLocation, ...locations]);
-      localStorage.setItem('list', JSON.stringify([currentLocation, ...locations])); 
+      localStorage.setItem(
+        'list',
+        JSON.stringify([currentLocation, ...locations])
+      );
     }
-  }
+  };
 
   const fetchPosition = (query) => {
     FETCH(`weather?${query}`)
@@ -59,7 +63,7 @@ const App = () => {
           (position) => {
             const lon = position.coords.longitude;
             const lat = position.coords.latitude;
-            fetchPosition(`lat=${lat}&lon=${lon}`)
+            fetchPosition(`lat=${lat}&lon=${lon}`);
             console.log('position updated!');
           },
           (error) => {
@@ -82,27 +86,34 @@ const App = () => {
 
   return (
     <>
-      <h1>What's the weather like?</h1>
+      {!loading && currentLocation && (
+        <div>
+        {/* <div id='wrapper' className='gradient-day-clear'> */}
+          <h1>What's the weather like?</h1>
 
-      <Search
-        id='search-bar'
-        placeholder='search for a location...'
-        onSearch={searchLocation}
-      />
+          <Search
+            id='search-bar'
+            placeholder='search for a location...'
+            onSearch={searchLocation}
+          />
 
-      <button onClick={() => setUnits({unit: 'metric', deg: 'C', speed: 'm/s'})}>°C</button>
-      <button onClick={() => setUnits({unit: 'imperial', deg: 'F', speed: 'mph'})}>°F</button>
+          <button
+            onClick={() => setUnits({ unit: 'metric', deg: 'C', speed: 'm/s' })}
+          >
+            °C
+          </button>
+          <button
+            onClick={() =>
+              setUnits({ unit: 'imperial', deg: 'F', speed: 'mph' })
+            }
+          >
+            °F
+          </button>
 
-      {error && <MessageError messageErr={error} />}
+          {error && <MessageError messageErr={error} />}
 
-      {!loading && (
-        <>
-          {currentLocation && (
-            <>
-              <WeatherSummary location={currentLocation} units={units} />
-              <button onClick={addToList}>Add to list</button>
-            </>
-          )}
+          <Main location={currentLocation} units={units} />
+          <button onClick={addToList}>Add to list</button>
 
           {warning && <MessageWarning messageWarn={warning} />}
 
@@ -111,9 +122,8 @@ const App = () => {
             current={currentLocation}
             onSelect={(location) => setCurrentLocation(location)}
           />
-        </>
+        </div>
       )}
-
       {loading && <p>Loading...</p>}
     </>
   );

@@ -1,0 +1,27 @@
+@import './gradient.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  color: whitesmoke;
+}
+
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#wrapper {
+  background-attachment: fixed;
+  background-position: 50%;
+  background-size: cover;
+}
+
+h1 {
+  margin: 0;
+}
+

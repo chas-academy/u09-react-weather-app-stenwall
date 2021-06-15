@@ -1,0 +1,16 @@
+.gradient {
+  &-day {
+    &-clear {
+      background: linear-gradient(#1681a8 10%, #4bc4df);
+    }
+    &-cloudy {
+      background: linear-gradient(#1681a8 10%, #4bc4df);
+    }
+  }
+
+  &-night {
+    &-clear {
+      background: linear-gradient(#1681a8 10%, #4bc4df);
+    }
+  }
+}
