@@ -17,7 +17,7 @@ const Main = ({ location, units }) => {
     (async () => {
       if (location) {
         await Promise.all([
-            FETCH(`weather?id=${location.id}&units=${units.unit}`)
+          FETCH(`weather?id=${location.id}&units=${units.unit}`)
             .then((data) => {
               setWeather(data);
             }),
@@ -26,17 +26,18 @@ const Main = ({ location, units }) => {
               setForecastDay(data.list);
               console.log(data.list);
             }),
-          FETCH(`onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`)
-            .then((data) => {
-              setForecastWeek(data.daily);
-            }),
+          FETCH(
+            `onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`
+          ).then((data) => {
+            setForecastWeek(data.daily);
+          }),
         ])
-          .finally(() => {
-            setLoading(false);
-          });
+        .finally(() => {
+          setLoading(false);
+        });
       }
     })();
-  }, [location, units])
+  }, [location, units]);
 
   // const [timeOfDay, setTimeOfDay] = useState('');
 
@@ -50,61 +51,68 @@ const Main = ({ location, units }) => {
 
   return (
     <>
-      {!loading && location &&  (
-        <div id='wrapper' className='gradient-day-clear'>
-          <h2>{location.name}</h2>
-          <i className='wi wi-night-sleet'></i>
-          {weather && (
-            <CurrentWeather
-              weather={weather.main}
-              time={weather.dt}
-              details={weather.weather[0]}
-              wind={weather.wind}
-              sun={weather.sys}
-              tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
-              units={units}
-            />
-          )}
+      {!loading && location && (
+        <div id="wrapper" className="gradient-day-clear">
+          <main>
+            <h2>{location.name}</h2>
 
-          <h2>24 hour forecast</h2>
-          <ol>
-            {forecastDay &&
-              forecastDay.map((weather) => (
-                <li key={weather.dt}>
-                  <ForecastDay
-                    weather={weather.main}
-                    time={weather.dt}
-                    wind={weather.wind}
-                    details={weather.weather[0]}
-                    tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
-                    units={units}
-                  />
-                </li>
-              ))}
-          </ol>
+            {weather && (
+              <CurrentWeather
+                weather={weather.main}
+                time={weather.dt}
+                details={weather.weather[0]}
+                wind={weather.wind}
+                sun={weather.sys}
+                tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                units={units}
+              />
+            )}
 
-          <h2>7 day forecast</h2>
-          <ol>
-            {forecastWeek &&
-              forecastWeek.map((weather) => (
-                <li key={weather.dt}>
-                  <ForecastWeek
-                    weather={weather}
-                    time={weather.dt}
-                    temp={weather.temp}
-                    details={weather.weather[0]}
-                    tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
-                    units={units}
-                  />
-                </li>
-              ))}
-          </ol>
+            <h2>24 hour forecast</h2>
+            <ol>
+              {forecastDay &&
+                forecastDay.map((weather) => (
+                  <li key={weather.dt}>
+                    <ForecastDay
+                      weather={weather.main}
+                      time={weather.dt}
+                      wind={weather.wind}
+                      details={weather.weather[0]}
+                      tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                      units={units}
+                    />
+                  </li>
+                ))}
+            </ol>
+
+            {forecastWeek && (
+              <div className="week-forecast">
+                <h2>7 day forecast</h2>
+                <table id="forecast-week">
+                  <tbody>
+                    {forecastWeek.map((weather) => (
+                      <tr key={weather.dt}>
+                        <ForecastWeek
+                          weather={weather}
+                          time={weather.dt}
+                          temp={weather.temp}
+                          details={weather.weather[0]}
+                          tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                          units={units}
+                        />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </main>
         </div>
       )}
 
       {loading && <p>Loading...</p>}
     </>
   );
-}
+};
 
 export default Main;

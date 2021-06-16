@@ -70,7 +70,7 @@ const App = () => {
             console.error(`ERROR (${error.code}): ${error.message}`);
           },
           {
-            timeout: 500,
+            timeout: 6000,
             maximumAge: 600_000,
             enableHighAccuracy: false,
           }

@@ -1,17 +1,67 @@
 @import '../../styling/weather-icons/css/weather-icons.min.css';
 @import '../../styling/weather-icons/css/weather-icons-wind.min.css';
 
+main {
+  margin: 0 auto;
+  width: 80vw;
+}
 ol {
   overflow: auto;
 
   li {
-    border-right: 1px solid black;
+    background: rgba(255, 255, 255, 0.098);
+    // box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.9);
     padding: 10px;
     list-style-type: none;
     display: inline-block;
+    border-radius: 5px;
+  }
+}
 
-    &:hover {
-      background: lightgray;
-    }
+.week-forecast {
+
+
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+#forecast-week {
+  background: rgba(255, 255, 255, 0.057);
+  box-shadow: 0 1.5px 0.7px rgba(0, 0, 0, 0.026),
+    0 3.4px 2.5px rgba(0, 0, 0, 0.037), 0 7.1px 7px rgba(0, 0, 0, 0.049),
+    0 21px 19px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  border-radius: 5px;
+  border-spacing: 0.5rem;
+  border-collapse: collapse;
+
+  tr,
+  td {
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  tr:not(:first-child) {
+    border-top: 1px solid rgba(255, 255, 255, 0.201);
+  }
+
+  i {
+    font-size: x-large;
+    padding: 0 0.8rem;
+    vertical-align: middle;
+  }
+
+  svg {
+    font-size: x-large;
+    vertical-align: middle;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  strong {
+    font-size: 1.2rem;
   }
 }
