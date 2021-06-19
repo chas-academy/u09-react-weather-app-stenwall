@@ -4,6 +4,7 @@ import ForecastDay from '../forecast_day';
 import ForecastWeek from '../forecast_week';
 import CurrentWeather from '../current_weather';
 import './Main.scss';
+import Accordion from '../accordion';
 
 const Main = ({ location, units }) => {
   const [weather, setWeather] = useState(null),
@@ -52,7 +53,7 @@ const Main = ({ location, units }) => {
   return (
     <>
       {!loading && location && (
-        <div id="wrapper" className="gradient-day-clear">
+        <div id='wrapper' className='gradient-day-clear'>
           <main>
             <h2>{location.name}</h2>
 
@@ -78,7 +79,9 @@ const Main = ({ location, units }) => {
                       time={weather.dt}
                       wind={weather.wind}
                       details={weather.weather[0]}
-                      tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+                      tod={
+                        weather.weather[0].icon.includes('d') ? 'day' : 'night'
+                      }
                       units={units}
                     />
                   </li>
@@ -86,12 +89,32 @@ const Main = ({ location, units }) => {
             </ol>
 
             {forecastWeek && (
-              <div className="week-forecast">
+              <div className='week-forecast'>
                 <h2>7 day forecast</h2>
-                <table id="forecast-week">
+                <table id='forecast-week'>
                   <tbody>
                     {forecastWeek.map((weather) => (
-                      <tr key={weather.dt}>
+                      <>
+                        <Accordion
+                          key={weather.dt}
+                          colSpan='8'
+                          section={
+                            <ForecastWeek
+                              weather={weather}
+                              time={weather.dt}
+                              temp={weather.temp}
+                              details={weather.weather[0]}
+                              tod={
+                                weather.weather[0].icon.includes('d')
+                                  ? 'day'
+                                  : 'night'
+                              }
+                              units={units}
+                            />
+                          }
+                          content={"hello, i'm the content!"}
+                        />
+                        {/* <tr key={weather.dt}>
                         <ForecastWeek
                           weather={weather}
                           time={weather.dt}
@@ -100,7 +123,8 @@ const Main = ({ location, units }) => {
                           tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
                           units={units}
                         />
-                      </tr>
+                      </tr> */}
+                      </>
                     ))}
                   </tbody>
                 </table>
