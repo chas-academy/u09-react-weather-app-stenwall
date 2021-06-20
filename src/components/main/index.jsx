@@ -93,38 +93,12 @@ const Main = ({ location, units }) => {
                 <h2>7 day forecast</h2>
                 <table id='forecast-week'>
                   <tbody>
-                    {forecastWeek.map((weather) => (
-                      <>
-                        <Accordion
-                          key={weather.dt}
-                          colSpan='8'
-                          section={
-                            <ForecastWeek
-                              weather={weather}
-                              time={weather.dt}
-                              temp={weather.temp}
-                              details={weather.weather[0]}
-                              tod={
-                                weather.weather[0].icon.includes('d')
-                                  ? 'day'
-                                  : 'night'
-                              }
-                              units={units}
-                            />
-                          }
-                          content={"hello, i'm the content!"}
-                        />
-                        {/* <tr key={weather.dt}>
-                        <ForecastWeek
-                          weather={weather}
-                          time={weather.dt}
-                          temp={weather.temp}
-                          details={weather.weather[0]}
-                          tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
-                          units={units}
-                        />
-                      </tr> */}
-                      </>
+                    {forecastWeek.map((weather, units) => (
+                      <ForecastWeek
+                        key={weather.td}
+                        weather={weather}
+                        units={units}
+                      />
                     ))}
                   </tbody>
                 </table>

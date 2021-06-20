@@ -1,53 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ForecastWeek.scss';
+import ForecastWeekDetails from './ForecastWeekDetails';
+import ForecastWeekOverview from './ForecastWeekOverview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
-const unixTimeToDate = (unixUTC) => {
-  return new Date(unixUTC * 1000);
-};
+const ForecastWeek = ({ weather, units }) => {
+  const [isActive, setIsActive] = useState(false);
 
-const options = {
-  weekday: 'short',
-  day: 'numeric',
-  month: 'short',
-};
-
-const ForecastWeek = ({ weather, time, temp, details, tod, units }) => {
+  if (isActive) return (
+    <tr className="details-row">
+      <td colSpan="7">
+        <ForecastWeekDetails
+          weather={weather}
+          time={weather.dt}
+          temp={weather.temp}
+          details={weather.weather[0]}
+          tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+          units={units}
+        />
+      </td>
+      <td onClick={() => setIsActive(!isActive)}>
+        <FontAwesomeIcon
+          className="arrow"
+          icon={faAngleUp}
+        />
+      </td>
+    </tr>
+  );
+  
   return (
-    <>
-      <td>
-        {unixTimeToDate(time).toLocaleDateString([], options)}
-      </td>
-      <td>
-        <strong>
-          {Math.round(temp.day)}° {units.deg}
-        </strong>
-      </td>
-      <td>
-        <i className={`wi wi-owm-${tod}-${details.id}`}></i>
-      </td>
-      <td>
-        <span>{details.description}</span>
-      </td>
-      <td>
-        <i className={`wi wi-humidity`}></i>
-        <span>{weather.humidity} %</span>
-      </td>
-      <td>
-        <i className={`wi wi-umbrella`}></i>
-        <span>{Math.round(weather.rain) || '0'} mm</span>
-      </td>
-      <td>
-        <i className={`wi wi-wind from-${weather.wind_deg}-deg`}></i>
-        <span>
-          {Math.round(weather.wind_speed)} ({Math.round(weather.wind_gust)}) {units.speed}
-        </span>
-      </td>
+    <tr
+      className="overview-row"
+      onClick={() => setIsActive(!isActive)}
+    >
+      <ForecastWeekOverview
+        weather={weather}
+        time={weather.dt}
+        temp={weather.temp}
+        details={weather.weather[0]}
+        tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
+        units={units}
+      />
       <td>
         <FontAwesomeIcon icon={faAngleDown} />
       </td>
-    </>
+    </tr>
   );
 };
 
