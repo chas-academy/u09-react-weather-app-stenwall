@@ -1,10 +1,10 @@
 @import './gradient.scss';
+@import './breakpoints.scss';
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  color: whitesmoke;
 }
 
 html,
@@ -13,6 +13,7 @@ html,
   padding: 0;
   height: 100%;
   width: 100%;
+  color: whitesmoke;
 }
 
 #wrapper {
@@ -22,9 +23,5 @@ html,
   overflow-y: auto;
 	overflow-x: hidden;
   // background-size: cover;
-}
-
-h1 {
-  margin: 0;
 }
 
