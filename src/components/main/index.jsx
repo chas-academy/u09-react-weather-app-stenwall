@@ -10,7 +10,11 @@ const Main = ({ location, units }) => {
   const [weather, setWeather] = useState(null),
         [forecastDay, setForecastDay] = useState(null),
         [forecastWeek, setForecastWeek] = useState(null),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [country, setCountry] = useState('');
+
+  const countryCodes = require('i18n-iso-countries');
+  countryCodes.registerLocale(require('i18n-iso-countries/langs/en.json'));
 
   useEffect(() => {
     setLoading(true);
@@ -19,19 +23,20 @@ const Main = ({ location, units }) => {
       if (location) {
         await Promise.all([
           FETCH(`weather?id=${location.id}&units=${units.unit}`)
-            .then((data) => {
+            .then(data => {
               setWeather(data);
+              setCountry(countryCodes.getName(data.sys.country, "en", {select: "official"}));
             }),
           FETCH(`forecast?id=${location.id}&units=${units.unit}&cnt=8`)
-            .then((data) => {
+            .then(data => {
               setForecastDay(data.list);
               console.log(data.list);
             }),
           FETCH(
-            `onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`
-          ).then((data) => {
-            setForecastWeek(data.daily);
-          }),
+            `onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`)
+          .then(data => {
+              setForecastWeek(data.daily);
+            })
         ])
         .finally(() => {
           setLoading(false);
@@ -53,9 +58,9 @@ const Main = ({ location, units }) => {
   return (
     <>
       {!loading && location && (
-        <div id='wrapper' className='gradient-day-clear'>
+        <div id="wrapper" className="gradient-day-clear">
           <main>
-            <h2>{location.name}</h2>
+            <h2>{location.name}, {country}</h2>
 
             {weather && (
               <CurrentWeather
@@ -72,7 +77,7 @@ const Main = ({ location, units }) => {
             <h2>24 hour forecast</h2>
             <ol>
               {forecastDay &&
-                forecastDay.map((weather) => (
+                forecastDay.map(weather => (
                   <li key={weather.dt}>
                     <ForecastDay
                       weather={weather.main}
@@ -89,9 +94,9 @@ const Main = ({ location, units }) => {
             </ol>
 
             {forecastWeek && (
-              <div className='week-forecast'>
+              <div className="week-forecast">
                 <h2>7 day forecast</h2>
-                <table id='forecast-week'>
+                <table id="forecast-week">
                   <tbody>
                     {forecastWeek.map((weather, units) => (
                       <ForecastWeek
