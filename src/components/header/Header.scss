@@ -1,0 +1,19 @@
+// header {
+//   background-image: url("../../assets/wave.svg");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   height: 200px;
+//   width: 100vw;
+// }
+
+// .wave {
+//   fill: red;
+// }
+@import "styling/style.scss";
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 6rem;
+}

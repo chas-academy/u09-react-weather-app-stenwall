@@ -1,6 +1,7 @@
 @import "gradient";
 @import "breakpoints";
 @import "fonts";
+@import "mixins";
 
 
 *,
@@ -13,14 +14,16 @@ html,
 #root {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+  // height: 100%;
+  // width: 100%;
   color: whitesmoke;
 }
 
 #wrapper {
   background-attachment: fixed;
-  height: 100vh;
+  margin-top: 0;
+  margin-bottom: 0;
+  // height: 100vh;
   width: 100vw;
   overflow-y: auto;
 	overflow-x: hidden;

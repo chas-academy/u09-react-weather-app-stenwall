@@ -6,6 +6,7 @@ import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import LocationList from './components/location_list';
 import Main from './components/main';
+import Header from './components/header';
 import './styling/style.scss';
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
         [error, setError] = useState(null),
         [warning, setWarning] = useState(null);
 
-  const searchLocation = (query) => {
+  const searchLocation = query => {
     setError(null);
     setWarning(null);
     setLoading(true);
@@ -25,7 +26,7 @@ const App = () => {
   };
 
   const addToList = () => {
-    if (locations.find((item) => item.id === currentLocation.id)) {
+    if (locations.find(item => item.id === currentLocation.id)) {
       setWarning(`'${currentLocation.name}' is already in the list`);
     } else {
       setLocations([currentLocation, ...locations]);
@@ -36,13 +37,13 @@ const App = () => {
     }
   };
 
-  const fetchPosition = (query) => {
+  const fetchPosition = query => {
     FETCH(`weather?${query}`)
-      .then((data) => {
+      .then(data => {
         setCurrentLocation(data);
         console.log(data.name);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(`Error fetching data with query: '${error}'`);
         setError(query);
       })
@@ -60,19 +61,19 @@ const App = () => {
       setLoading(true);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          (position) => {
+          position => {
             const lon = position.coords.longitude;
             const lat = position.coords.latitude;
             fetchPosition(`lat=${lat}&lon=${lon}`);
             console.log('position updated!');
           },
-          (error) => {
+          error => {
             console.error(`ERROR (${error.code}): ${error.message}`);
           },
           {
             timeout: 6000,
             maximumAge: 600_000,
-            enableHighAccuracy: false,
+            enableHighAccuracy: false
           }
         );
       } else {
@@ -88,16 +89,20 @@ const App = () => {
     <>
       {!loading && currentLocation && (
         <div>
-        {/* <div id='wrapper' className='gradient-day-clear'> */}
-          <h1>What's the weather like?</h1>
-
-          <Search
-            id='search-bar'
-            placeholder='search for a location...'
+          {/* <div id='wrapper' className='gradient-day-clear'> */}
+          <Header
             onSearch={searchLocation}
+            celsiusClick={() => setUnits({ unit: 'metric', deg: 'C', speed: 'm/s' })}
+            farenheitClick={() => setUnits({ unit: 'imperial', deg: 'F', speed: 'mph' })}
           />
 
-          <button
+          {/* <Search
+            id="search-bar"
+            placeholder="search for a location..."
+            onSearch={searchLocation}
+          /> */}
+
+          {/* <button
             onClick={() => setUnits({ unit: 'metric', deg: 'C', speed: 'm/s' })}
           >
             °C
@@ -108,7 +113,7 @@ const App = () => {
             }
           >
             °F
-          </button>
+          </button> */}
 
           {error && <MessageError messageErr={error} />}
 
@@ -120,7 +125,7 @@ const App = () => {
           <LocationList
             locations={locations}
             current={currentLocation}
-            onSelect={(location) => setCurrentLocation(location)}
+            onSelect={location => setCurrentLocation(location)}
           />
         </div>
       )}

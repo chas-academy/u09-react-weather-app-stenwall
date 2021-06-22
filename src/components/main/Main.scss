@@ -1,9 +1,17 @@
+@import 'styling/style.scss';
 @import '../../styling/weather-icons/css/weather-icons.min.css';
 @import '../../styling/weather-icons/css/weather-icons-wind.min.css';
 
 main {
   margin: 0 auto;
-  width: 80vw;
+  width: 100vw;
+  position: relative;
+  margin-top: 6rem;
+  top: 6rem;
+
+  @include min-sm {
+    width: 80vw;
+  }
 }
 ol {
   overflow: auto;
@@ -19,8 +27,6 @@ ol {
 }
 
 .week-forecast {
-
-
   h2 {
     font-size: 2rem;
   }
@@ -29,12 +35,14 @@ ol {
 #forecast-week {
   background: rgba(255, 255, 255, 0.057);
   box-shadow: 0 1.5px 0.7px rgba(0, 0, 0, 0.026),
-    0 3.4px 2.5px rgba(0, 0, 0, 0.037), 0 7.1px 7px rgba(0, 0, 0, 0.049),
-    0 21px 19px rgba(0, 0, 0, 0.08);
+              0 3.4px 2.5px rgba(0, 0, 0, 0.037),
+              0 7.1px 7px rgba(0, 0, 0, 0.049),
+              0 21px 19px rgba(0, 0, 0, 0.08);
   margin: 2rem auto;
   border-radius: 5px;
   border-spacing: 0.5rem;
   border-collapse: collapse;
+  max-width: 100%;
 
   tr,
   td {
@@ -46,16 +54,16 @@ ol {
     border-top: 1px solid rgba(255, 255, 255, 0.201);
   }
 
-  i {
-    font-size: x-large;
-    padding: 0 0.8rem;
-    vertical-align: middle;
-  }
+  // i {
+  //   font-size: x-large;
+  //   // padding: 0 0.8rem;
+  //   vertical-align: middle;
+  // }
 
-  svg {
-    font-size: x-large;
-    vertical-align: middle;
-  }
+  // svg {
+  //   font-size: x-large;
+  //   vertical-align: middle;
+  // }
 
   span {
     vertical-align: middle;
