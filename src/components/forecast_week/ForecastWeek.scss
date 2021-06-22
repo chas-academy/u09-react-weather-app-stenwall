@@ -1,3 +1,43 @@
+@import 'styling/style.scss';
+
 .table-cell {
-    display: table-cell;
+  display: table-cell;
+}
+
+.fa-angle-up {
+  vertical-align: top;
+}
+
+.details-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+
+  & > * {
+    padding: 1rem;
+    flex: 1 100%;
+    background: rgba(255, 255, 255, 0.098);
+    border-radius: 5px;
+  }
+
+  .table-card {
+    flex: 1 2 auto;
+
+    &.details-overview,
+    &.weather {
+      flex: 1 0 50%;
+    }
+
+    .icon,
+    svg.icon {
+      margin-right: 1rem;
+      width: 2rem;
+      height: 2rem;
+      vertical-align: middle;
+      padding: 0;
+      &.wi {
+        font-size: xx-large;
+      }
+    }
+  }
 }
