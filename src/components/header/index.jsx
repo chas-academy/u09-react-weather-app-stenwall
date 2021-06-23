@@ -20,7 +20,6 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
 
   return (
     <header>
-      <h1>What's the weather like?</h1>
       <div className="right-align">
         <Search
           id="search-bar"
