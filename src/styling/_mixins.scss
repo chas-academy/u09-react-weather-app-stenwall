@@ -23,6 +23,23 @@
   cursor: pointer;
   font-family: "HankenBook";
   text-transform: uppercase;
+  transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.3);
+
+      &::after {
+        transform: scale(1);
+      }
+    }
+
+    &:active {
+      transform: scale(0.6);
+
+      &::after {
+        transform: scale(1);
+      }
+    }
 }
 
 

@@ -47,7 +47,6 @@
   .list-btn {
     @include button();
     padding: 1rem;
-    cursor: pointer;
 
     .heart {
       width: 1.5rem;
