@@ -92,6 +92,9 @@ const App = () => {
           <Header
             onSearch={searchLocation}
             setUnits={setUnits}
+            locations={locations}
+            current={currentLocation}
+            onSelect={location => setCurrentLocation(location)}
           />
 
           {error && <MessageError messageErr={error} />}
@@ -101,11 +104,11 @@ const App = () => {
 
           {warning && <MessageWarning messageWarn={warning} />}
 
-          <LocationList
+          {/* <LocationList
             locations={locations}
             current={currentLocation}
             onSelect={location => setCurrentLocation(location)}
-          />
+          /> */}
         </div>
       )}
       {loading && <p>Loading...</p>}

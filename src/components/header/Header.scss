@@ -24,7 +24,6 @@ header {
   padding: 0 2rem;
 
   h1 {
-    padding-left: 2rem;
     font-size: 1.5rem;
   }
 
@@ -36,6 +35,8 @@ header {
     background: hsla(0,0%,100%,.2);
     height: 2.375rem;
     max-width: 20rem;
+    padding-left: 1rem;
+    margin: 0 1rem;
 
     label {
       @include hide();
@@ -47,7 +48,7 @@ header {
       background-color: transparent;
       text-align: center;
       color: $font-color;
-      font-size: 16px;
+      font-size: 1rem;
       font-family: "HankenBook";
 
       &::placeholder {
