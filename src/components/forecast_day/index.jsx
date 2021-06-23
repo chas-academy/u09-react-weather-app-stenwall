@@ -13,7 +13,7 @@ const options = {
 
 const ForecastDay = ({ weather, time, details, tod, units }) => {
   return (
-    <div class="hour-card">
+    <div className="hour-card">
       <div className="day-time">{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
 
       <div>

@@ -1,20 +1,19 @@
-// import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { FETCH } from '../src/services/WeatherService';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
-import LocationList from './components/location_list';
 import Main from './components/main';
 import Header from './components/header';
+import Loading from './components/loading';
 import './styling/style.scss';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
-    [currentLocation, setCurrentLocation] = useState(''),
-    [units, setUnits] = useState({ unit: 'metric', deg: 'C', speed: 'm/s' }),
-    [loading, setLoading] = useState(false),
-    [error, setError] = useState(null),
-    [warning, setWarning] = useState(null);
+        [currentLocation, setCurrentLocation] = useState(''),
+        [units, setUnits] = useState({ unit: 'metric', deg: 'C', speed: 'm/s' }),
+        [loading, setLoading] = useState(false),
+        [error, setError] = useState(null),
+        [warning, setWarning] = useState(null);
 
   const searchLocation = query => {
     setError(null);
@@ -104,14 +103,17 @@ const App = () => {
 
           {error && <MessageError messageErr={error} />}
 
-          <Main location={currentLocation} units={units} />
-          <button onClick={addToList}>Add to list</button>
+          <Main
+            location={currentLocation}
+            units={units}
+            addToList={addToList}
+          />
 
           {warning && <MessageWarning messageWarn={warning} />}
 
         </div>
       )}
-      {loading && <p>Loading...</p>}
+      {loading && <Loading />}
     </>
   );
 };

@@ -1,16 +1,19 @@
 .gradient {
   &-day {
     &-clear {
-      background: linear-gradient(#1681a8 10%, #4bc4df);
+      background: linear-gradient($day-clear-top 10%, $day-clear-bottom);
+      &-icon:before {
+        color: linear-gradient($day-clear-bottom, $day-clear-top);
+      }
     }
     &-cloudy {
-      background: linear-gradient(#1681a8 10%, #4bc4df);
+      background: linear-gradient($day-clear-top 10%, $day-clear-bottom);
     }
   }
 
   &-night {
     &-clear {
-      background: linear-gradient(#1681a8 10%, #4bc4df);
+      background: linear-gradient($day-clear-top 10%, $day-clear-bottom);
     }
   }
 }

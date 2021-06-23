@@ -4,8 +4,9 @@ import ForecastDay from '../forecast_day';
 import ForecastWeek from '../forecast_week';
 import CurrentWeather from '../current_weather';
 import './Main.scss';
+import Loading from '../loading';
 
-const Main = ({ location, units }) => {
+const Main = ({ location, units, addToList }) => {
   const [weather, setWeather] = useState(null),
         [forecastDay, setForecastDay] = useState(null),
         [forecastWeek, setForecastWeek] = useState(null),
@@ -22,19 +23,19 @@ const Main = ({ location, units }) => {
       if (location) {
         await Promise.all([
           FETCH(`weather?id=${location.id}&units=${units.unit}`)
-            .then(data => {
-              setWeather(data);
-              setCountry(
-                countryCodes.getName(data.sys.country, 'en', {
-                  select: 'official'
-                })
-              );
-            }),
+          .then(data => {
+            setWeather(data);
+            setCountry(
+              countryCodes.getName(data.sys.country, 'en', {
+                select: 'official'
+              })
+            );
+          }),
           FETCH(`forecast?id=${location.id}&units=${units.unit}&cnt=8`)
-            .then(data => {
-              setForecastDay(data.list);
-              console.log(data.list);
-            }),
+          .then(data => {
+            setForecastDay(data.list);
+            console.log(data.list);
+          }),
           FETCH(
             `onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`)
           .then(data => {
@@ -47,6 +48,8 @@ const Main = ({ location, units }) => {
       }
     })();
   }, [location, units]);
+
+  if (loading || !location || !units || !ForecastDay || !ForecastWeek || !weather) return <Loading />
 
   return (
     <>
@@ -66,6 +69,7 @@ const Main = ({ location, units }) => {
                 units={units}
                 city={location.name}
                 country={country}
+                clickSaveLocation={addToList}
               />
             )}
 
@@ -111,7 +115,7 @@ const Main = ({ location, units }) => {
         </div>
       )}
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loading />}
     </>
   );
 };
