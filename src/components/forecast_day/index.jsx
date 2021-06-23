@@ -1,35 +1,29 @@
 import React from 'react';
 import './ForecastDay.scss';
 
-const unixTimeToDate = (unixUTC) => {
+const unixTimeToDate = unixUTC => {
   return new Date(unixUTC * 1000);
 };
 
 const options = {
-  weekday: 'long',
+  weekday: 'short',
   hour: '2-digit',
-  minute: '2-digit',
-  timeZoneName: 'short',
+  minute: '2-digit'
 };
 
-const ForecastDay = ({ weather, time, wind, details, tod, units }) => {
+const ForecastDay = ({ weather, time, details, tod, units }) => {
   return (
-    <>
-      <div>{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
-      <strong>
-        {Math.round(weather.temp)}&deg;{units.deg}
-      </strong>
-      <div>Humidity: {weather.humidity}%</div>
-      <div>
-        <i className={`wi wi-wind from-${wind.deg}-deg`}></i>
-        Wind: {wind.speed} ({wind.gust}) {units.speed}
-      </div>
+    <div class="hour-card">
+      <div className="day-time">{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
+
       <div>
         <i className={`wi wi-owm-${tod}-${details.id}`}></i>
-        <div>{details.main}</div>
-        <div>{details.description}</div>
       </div>
-    </>
+
+      <div className="temp">
+        {Math.round(weather.temp)}<span>&deg;</span>{units.deg}
+      </div>
+    </div>
   );
 };
 
