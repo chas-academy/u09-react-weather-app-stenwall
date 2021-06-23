@@ -10,11 +10,11 @@ import './styling/style.scss';
 
 const App = () => {
   const [locations, setLocations] = useState([]),
-        [currentLocation, setCurrentLocation] = useState(''),
-        [units, setUnits] = useState({ unit: 'metric', deg: 'C', speed: 'm/s' }),
-        [loading, setLoading] = useState(false),
-        [error, setError] = useState(null),
-        [warning, setWarning] = useState(null);
+    [currentLocation, setCurrentLocation] = useState(''),
+    [units, setUnits] = useState({ unit: 'metric', deg: 'C', speed: 'm/s' }),
+    [loading, setLoading] = useState(false),
+    [error, setError] = useState(null),
+    [warning, setWarning] = useState(null);
 
   const searchLocation = query => {
     setError(null);
@@ -33,6 +33,33 @@ const App = () => {
         'list',
         JSON.stringify([currentLocation, ...locations])
       );
+    }
+  };
+
+  const getCurrentPos = () => {
+    setLoading(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lon = position.coords.longitude;
+          const lat = position.coords.latitude;
+          fetchPosition(`lat=${lat}&lon=${lon}`);
+          console.log('position updated!');
+        },
+        error => {
+          console.error(`ERROR (${error.code}): ${error.message}`);
+        },
+        {
+          timeout: 6000,
+          maximumAge: 600_000,
+          enableHighAccuracy: false
+        }
+      );
+    } else {
+      alert(
+        'GeoLocation not available, please select your location manually with the search function'
+      );
+      setLoading(false);
     }
   };
 
@@ -57,30 +84,7 @@ const App = () => {
     }
 
     if (!currentLocation) {
-      setLoading(true);
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            const lon = position.coords.longitude;
-            const lat = position.coords.latitude;
-            fetchPosition(`lat=${lat}&lon=${lon}`);
-            console.log('position updated!');
-          },
-          error => {
-            console.error(`ERROR (${error.code}): ${error.message}`);
-          },
-          {
-            timeout: 6000,
-            maximumAge: 600_000,
-            enableHighAccuracy: false
-          }
-        );
-      } else {
-        alert(
-          'GeoLocation not available, please select your location manually with the search function'
-        );
-        setLoading(false);
-      }
+      getCurrentPos();
     }
   }, [loading, currentLocation]);
 
@@ -95,6 +99,7 @@ const App = () => {
             locations={locations}
             current={currentLocation}
             onSelect={location => setCurrentLocation(location)}
+            clickShowCurrPos={getCurrentPos}
           />
 
           {error && <MessageError messageErr={error} />}
@@ -104,11 +109,6 @@ const App = () => {
 
           {warning && <MessageWarning messageWarn={warning} />}
 
-          {/* <LocationList
-            locations={locations}
-            current={currentLocation}
-            onSelect={location => setCurrentLocation(location)}
-          /> */}
         </div>
       )}
       {loading && <p>Loading...</p>}

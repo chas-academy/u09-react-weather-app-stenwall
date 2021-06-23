@@ -98,6 +98,16 @@ header {
     }
   }
 
+  .location-btn {
+    @include button();
+    padding: 1rem;
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
   // wave!
   // @include wave($header-color);
   // position: fixed;

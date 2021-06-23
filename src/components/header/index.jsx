@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import LocationList from '../location_list';
 import Search from '../search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
-const Header = ({ onSearch, setUnits, locations, current, onSelect }) => {
+const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCurrPos }) => {
   const [activeUnit, setActiveUnit] = useState('metric');
 
   const unit = {
@@ -27,18 +29,18 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect }) => {
         />
         <div className="button-container">
           <button
+            aria-label="Set units to metric/celsius"
             className={activeUnit === 'metric' ? 'active' : null}
             onClick={() => btnClick(unit.metric)}
           >
-            {/* °C */}
             <i className={`wi wi-celsius icon`}></i>
           </button>
           <span>|</span>
           <button
+            aria-label="Set units to imperial/fahrenheit"
             className={activeUnit === 'imperial' ? 'active' : null}
             onClick={() => btnClick(unit.imperial)}
           >
-            {/* °F */}
             <i className={`wi wi-fahrenheit icon`}></i>
           </button>
         </div>
@@ -48,6 +50,14 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect }) => {
           current={current}
           onSelect={onSelect}
         />
+
+        <button
+          aria-label="Get info about the current location"
+          className="location-btn"
+          onClick={clickShowCurrPos}
+        >
+          <FontAwesomeIcon className="icon" icon={faMapMarkerAlt} />
+        </button>
       </div>
     </header>
   );

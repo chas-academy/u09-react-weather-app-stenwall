@@ -28,7 +28,7 @@ const LocationList = ({ locations, onSelect, current }) => {
     <>
       <div className="list-container">
         <button onClick={openList} className="list-btn" aria-label="List of saved locations">
-          <FontAwesomeIcon className="heart" icon={faHeart} />
+          <FontAwesomeIcon className="icon" icon={faHeart} />
         </button>
         <ul
           ref={listRef}
