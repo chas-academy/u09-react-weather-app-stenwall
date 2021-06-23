@@ -1,14 +1,3 @@
-// header {
-//   background-image: url("../../assets/wave.svg");
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   height: 200px;
-//   width: 100vw;
-// }
-
-// .wave {
-//   fill: red;
-// }
 @import '../../styling/style.scss';
 
 header {
@@ -27,12 +16,19 @@ header {
     font-size: 1.5rem;
   }
 
+  .right-align {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   form {
     flex-grow: 2;
     display: flex;
     flex-direction: row;
     border-radius: 20px;
-    background: hsla(0,0%,100%,.2);
+    background: hsla(0, 0%, 100%, 0.2);
     height: 2.375rem;
     max-width: 20rem;
     padding-left: 1rem;
@@ -49,7 +45,7 @@ header {
       text-align: center;
       color: $font-color;
       font-size: 1rem;
-      font-family: "HankenBook";
+      font-family: 'HankenBook';
 
       &::placeholder {
         color: $font-color;
@@ -72,18 +68,34 @@ header {
 
   .button-container {
     font-size: 1.5rem;
+    
+    // line-height: 1.5;
 
-     button {
-       @include button();
-       width: 3rem;
-       height: 3rem;
-       font-size: 1.5rem;
-       opacity: 0.5;
+    // span {
+    //   font-size: 1.8rem;
+    //   vertical-align: baseline;
+    //   line-height: 1;
+    // }
+
+    button {
+      @include button();
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
+      // line-height: 0;
+      opacity: 0.5;
+      // padding: 0;
+      vertical-align: middle;
+
+      .icon {
+        font-size: 2.5rem;
+      // line-height: 1;
+      }
 
       &.active {
         opacity: 1;
       }
-     }
+    }
   }
 
   // wave!
