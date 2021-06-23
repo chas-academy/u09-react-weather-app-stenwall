@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Search.scss';
 
 const Search = ({ id, placeholder, onSearch }) => {
@@ -31,7 +33,10 @@ const Search = ({ id, placeholder, onSearch }) => {
           disabled={disableSearch}
           // onClick={searchLocation}
         >
-          Search
+          <FontAwesomeIcon
+          className="icon"
+          icon={faSearch}
+        />
         </button>
       </form>
     </>

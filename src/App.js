@@ -1,6 +1,5 @@
 // import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import Search from './components/search';
 import { FETCH } from '../src/services/WeatherService';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
@@ -87,33 +86,13 @@ const App = () => {
 
   return (
     <>
-      {!loading && currentLocation && (
+      {!loading && currentLocation && units && (
         <div>
           {/* <div id='wrapper' className='gradient-day-clear'> */}
           <Header
             onSearch={searchLocation}
-            celsiusClick={() => setUnits({ unit: 'metric', deg: 'C', speed: 'm/s' })}
-            farenheitClick={() => setUnits({ unit: 'imperial', deg: 'F', speed: 'mph' })}
+            setUnits={setUnits}
           />
-
-          {/* <Search
-            id="search-bar"
-            placeholder="search for a location..."
-            onSearch={searchLocation}
-          /> */}
-
-          {/* <button
-            onClick={() => setUnits({ unit: 'metric', deg: 'C', speed: 'm/s' })}
-          >
-            °C
-          </button>
-          <button
-            onClick={() =>
-              setUnits({ unit: 'imperial', deg: 'F', speed: 'mph' })
-            }
-          >
-            °F
-          </button> */}
 
           {error && <MessageError messageErr={error} />}
 
