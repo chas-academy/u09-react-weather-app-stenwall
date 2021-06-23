@@ -1,9 +1,15 @@
+@import url("https://fontlibrary.org//face/hanken");
+@import "variables";
 @import "gradient";
 @import "breakpoints";
 @import "fonts";
 @import "mixins";
 
-
+// body {
+//   font-family: "HankenBook";
+//   font-weight: normal;
+//   font-style: normal;
+// }
 *,
 *::before,
 *::after {
@@ -17,6 +23,9 @@ html,
   // height: 100%;
   // width: 100%;
   color: whitesmoke;
+  font-family: "HankenBook";
+  font-weight: normal;
+  font-style: normal;
 }
 
 #wrapper {
