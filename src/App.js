@@ -49,7 +49,7 @@ const App = () => {
           console.error(`ERROR (${error.code}): ${error.message}`);
         },
         {
-          timeout: 6000,
+          timeout: 10000,
           maximumAge: 600_000,
           enableHighAccuracy: false
         }
