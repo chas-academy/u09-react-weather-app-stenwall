@@ -22,30 +22,30 @@ const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
   return (
     <div className="details-wrapper">
 
-      <div className="table-card details-overview">
+      <div className="detail-card details-overview">
         <span className="time">{unixTimeToDate(time).toLocaleDateString([], dateOptions)}</span>
         <span className="temp">{Math.round(temp.day)}° {units.deg}</span>
       </div>
 
-      <div className="table-card weather">
+      <div className="detail-card weather">
         <i className={`wi wi-owm-${tod}-${details.id} icon`}></i>
         <span>{details.main}</span>
         <span>{details.description}</span>
       </div>
 
-      <div className="table-card feels-like">
+      <div className="detail-card feels-like">
         <i className={`wi wi-thermometer icon wi-fw`}></i>
         <span>Feels like</span>
         <span>{Math.round(weather.feels_like.day)}° {units.deg}</span>
       </div>
 
-      <div className="table-card humidity">
+      <div className="detail-card humidity">
         <i className={`wi wi-humidity icon wi-fw`}></i>
         <span>Humidity</span>
         <span>{weather.humidity} %</span>
       </div>
 
-      <div className="table-card wind">
+      <div className="detail-card wind">
         <i className={`wi wi-wind from-${weather.wind_deg}-deg icon wi-fw`}></i>
         <span>Wind (gust wind)</span>
         <span>
@@ -54,13 +54,13 @@ const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
         </span>
       </div>
 
-      <div className="table-card rain">
+      <div className="detail-card rain">
         <i className={`wi wi-umbrella icon wi-fw`}></i>
         <span>Rain</span>
         <span>{Math.round(weather.rain) || '0'} mm</span>
       </div>
 
-      <div className="table-card uv-index">
+      <div className="detail-card uv-index">
         <FontAwesomeIcon
           className="icon"
           icon={faSun}
@@ -69,20 +69,20 @@ const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
         <span>{weather.uvi}</span>
       </div>
 
-      <div className="table-card pressure">
+      <div className="detail-card pressure">
         <i className={`wi wi-barometer icon wi-fw`}></i>
         <span>Pressure</span>
         <span>{weather.pressure} hPa</span>
       </div>
 
-      <div className="table-card sunrise">
+      <div className="detail-card sunrise">
         <i className={`wi wi-sunrise icon wi-fw`}></i>
         <span>Sunrise</span>
         <span>{unixTimeToDate(weather.sunrise).toLocaleTimeString([], timeOptions)}
         </span>
       </div>
 
-      <div className="table-card sunset">
+      <div className="detail-card sunset">
         <i className={`wi wi-sunset icon wi-fw`}></i>
         <span>Sunset</span>
         <span>{unixTimeToDate(weather.sunset).toLocaleTimeString([], timeOptions)}

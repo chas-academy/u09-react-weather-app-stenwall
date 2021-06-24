@@ -34,7 +34,6 @@ const Main = ({ location, units, addToList }) => {
           FETCH(`forecast?id=${location.id}&units=${units.unit}&cnt=8`)
           .then(data => {
             setForecastDay(data.list);
-            console.log(data.list);
           }),
           FETCH(
             `onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=minutely,hourly&units=${units.unit}`)
@@ -56,7 +55,6 @@ const Main = ({ location, units, addToList }) => {
       {!loading && location && (
         <div id="wrapper" className="gradient-day-clear">
           <main>
-            {/* <h2>{location.name}, {country}</h2> */}
 
             {weather && units && (
               <CurrentWeather
@@ -76,15 +74,15 @@ const Main = ({ location, units, addToList }) => {
             <div className="day-forecast">
               <h2>24 hour forecast</h2>
               <ol>
-                {forecastDay && units && (
-                  forecastDay.map(weather => (
-                    <li key={weather.dt}>
+                {forecastDay && weather && units && (
+                  forecastDay.map(forecast => (
+                    <li key={forecast.dt}>
                       <ForecastDay
-                        weather={weather.main}
-                        time={weather.dt}
-                        details={weather.weather[0]}
+                        weather={forecast.main}
+                        time={forecast.dt}
+                        details={forecast.weather[0]}
                         tod={
-                          weather.weather[0].icon.includes('d')
+                          forecast.weather[0].icon.includes('d')
                             ? 'day'
                             : 'night'
                         }
@@ -95,22 +93,21 @@ const Main = ({ location, units, addToList }) => {
               </ol>
             </div>
 
-            {forecastWeek && units && (
-              <div className="week-forecast">
-                <h2>7 day forecast</h2>
-                <table id="forecast-week">
-                  <tbody>
-                    {forecastWeek.map((weather, units) => (
+            <div className="week-forecast">
+              <h2>7 day forecast</h2>
+              <ol>
+              {forecastWeek && weather && units && (
+                forecastWeek.slice(1).map(forecast => (
+                    <li key={forecast.dt}> 
                       <ForecastWeek
-                        key={weather.td}
-                        weather={weather}
+                        weather={forecast}
                         units={units}
                       />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+                    </li>
+                )))}
+              </ol>
+            </div>
+
           </main>
         </div>
       )}

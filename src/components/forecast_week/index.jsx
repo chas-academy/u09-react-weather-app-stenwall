@@ -9,8 +9,7 @@ const ForecastWeek = ({ weather, units }) => {
   const [isActive, setIsActive] = useState(false);
 
   if (isActive) return (
-    <tr className="details-row">
-      <td colSpan="7">
+    <div className="details-row" onClick={() => setIsActive(!isActive)}>
         <ForecastWeekDetails
           weather={weather}
           time={weather.dt}
@@ -19,18 +18,15 @@ const ForecastWeek = ({ weather, units }) => {
           tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
           units={units}
         />
-      </td>
-      <td onClick={() => setIsActive(!isActive)}>
         <FontAwesomeIcon
           className="arrow"
           icon={faAngleUp}
         />
-      </td>
-    </tr>
+    </div>
   );
   
   return (
-    <tr
+    <div
       className="overview-row"
       onClick={() => setIsActive(!isActive)}
     >
@@ -42,10 +38,11 @@ const ForecastWeek = ({ weather, units }) => {
         tod={weather.weather[0].icon.includes('d') ? 'day' : 'night'}
         units={units}
       />
-      <td>
-        <FontAwesomeIcon icon={faAngleDown} />
-      </td>
-    </tr>
+      <FontAwesomeIcon
+        className="arrow"
+        icon={faAngleDown}
+      />
+    </div>
   );
 };
 
