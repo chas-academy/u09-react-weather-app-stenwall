@@ -9,9 +9,9 @@ const ForecastWeekOverview = ({ weather, time, temp, details, tod, units }) => {
 
   return (
     <>
-      <div className="day"><span>{unixTimeToDate(time).toLocaleDateString([], {weekday: 'long'})}</span></div>
-      <div className="temp"><span>{Math.round(temp.day)}° {units.deg}</span></div>
-      <div className="weather-desc"><span>{details.description}</span></div>
+      <div className="day">{unixTimeToDate(time).toLocaleDateString([], {weekday: 'long'})}</div>
+      <div className="temp">{Math.round(temp.day)}° {units.deg}</div>
+      <div className="weather-desc">{details.description}</div>
       <div className="weather-icon"><i className={`wi wi-owm-${tod}-${details.id}`}></i></div>
       {/* <div className="humidity"><i className={`wi wi-humidity`}></i><span>{weather.humidity} %</span></div> */}
       {/* <div className="rain"><i className={`wi wi-umbrella`}></i><span>{Math.round(weather.rain) || '0'} mm</span></div> */}

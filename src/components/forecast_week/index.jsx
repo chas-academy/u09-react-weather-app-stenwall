@@ -9,7 +9,10 @@ const ForecastWeek = ({ weather, units }) => {
   const [isActive, setIsActive] = useState(false);
 
   if (isActive) return (
-    <div className="details-row" onClick={() => setIsActive(!isActive)}>
+    <div
+      className="details-row"
+      onClick={() => setIsActive(!isActive)}
+    >
         <ForecastWeekDetails
           weather={weather}
           time={weather.dt}

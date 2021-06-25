@@ -90,8 +90,7 @@ const App = () => {
   return (
     <>
       {!loading && currentLocation && units && (
-        <div>
-          {/* <div id='wrapper' className='gradient-day-clear'> */}
+        <>
           <Header
             onSearch={searchLocation}
             setUnits={setUnits}
@@ -111,7 +110,7 @@ const App = () => {
 
           {warning && <MessageWarning messageWarn={warning} />}
 
-        </div>
+        </>
       )}
       {loading && <Loading />}
     </>

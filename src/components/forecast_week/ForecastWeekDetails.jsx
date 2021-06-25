@@ -14,8 +14,7 @@ const dateOptions = {
 
 const timeOptions = {
   hour: '2-digit',
-  minute: '2-digit',
-  timeZoneName: 'short',
+  minute: '2-digit'
 };
 
 const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
