@@ -8,7 +8,7 @@ School Assignment @ Chas Academy, class FWD20
 
 ## Requirements
 
-As a user, you should be able to do:
+As a user, you should be able to:
 
 - [x] See the following weather conditions for their current position:
   - [x] Temperature

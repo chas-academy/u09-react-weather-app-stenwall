@@ -2,12 +2,16 @@
 $font-color: whitesmoke;
 $header-color: purple;
 
+// @ {
+//     background-color: mix(black, $color, 70%);
+//   }
+
 // gradient colors
 $day-clear-top: #1681a8;
 $day-clear-bottom: #4bc4df;
 $day-hot-top: #f9ef77;
 $day-hot-bottom: #e29039;
-$day-clouds-top: #b7ebfa;
+$day-clouds-top: #4d8494;
 $day-clouds-bottom: #d9b1ce;
 $day-drizzle-top: #5676ff;
 $day-drizzle-bottom: #a4b7da;

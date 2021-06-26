@@ -65,7 +65,7 @@ const CurrentWeather = ({
       </div>
 
       <div>
-        <i className={`wi icon-wi gradient-day-clear-icon wi-owm-${tod}-${details.id}`}></i>
+        <i className={`wi icon-wi wi-owm-${tod}-${details.id}`}></i>
         {details.main}
         {details.description}
       </div>
