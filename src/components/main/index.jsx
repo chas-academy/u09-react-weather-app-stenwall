@@ -52,11 +52,10 @@ const Main = ({ location, units, addToList }) => {
 
   return (
     <>
-      {!loading && location && (
-        <div id="wrapper" className="gradient-day-clear">
+      {!loading && location && weather && units && (
+        <div id="wrapper" className={`gradient-${weather.weather[0].icon.includes('d') ? 'day' : 'night'}-${weather.weather[0].main.toLowerCase()}`}>
           <main>
 
-            {weather && units && (
               <CurrentWeather
                 weather={weather.main}
                 time={weather.dt}
@@ -69,12 +68,11 @@ const Main = ({ location, units, addToList }) => {
                 country={country}
                 clickSaveLocation={addToList}
               />
-            )}
 
             <div className="day-forecast">
               <h2>24 hour forecast</h2>
               <ol>
-                {forecastDay && weather && units && (
+                {forecastDay && (
                   forecastDay.map(forecast => (
                     <li key={forecast.dt}>
                       <ForecastDay
@@ -96,7 +94,7 @@ const Main = ({ location, units, addToList }) => {
             <div className="week-forecast">
               <h2>7 day forecast</h2>
               <ol>
-              {forecastWeek && weather && units && (
+              {forecastWeek && (
                 forecastWeek.slice(1).map(forecast => (
                     <li key={forecast.dt}> 
                       <ForecastWeek
