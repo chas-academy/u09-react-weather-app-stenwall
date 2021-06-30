@@ -1,0 +1,67 @@
+.wave {
+  &-day {
+    &-clear {
+      @include header-wave($day-clear-top);
+    }
+    &-clouds {
+      @include header-wave($day-clouds-top);
+    }
+    &-drizzle {
+      @include header-wave($day-drizzle-top);
+    }
+    &-rain {
+      @include header-wave($day-rain-top);
+    }
+    &-snow {
+      @include header-wave($day-snow-top);
+    }
+    &-thunderstorm {
+      @include header-wave($day-thunderstorm-top);
+    }
+    &-mist, &-smoke, &-dust, &-haze, &-fog, &-squall {
+      @include header-wave($day-mist-top);
+    }
+    &-sand {
+      @include header-wave($day-sand-top);
+    }
+    &-ash {
+      @include header-wave($day-ash-top);
+    }
+    &-tornado {
+      @include header-wave($day-tornado-top);
+    }
+  }
+  
+  &-night {
+    &-clear {
+      @include header-wave($night-clear-top);
+    }
+    &-clouds {
+      @include header-wave($night-clouds-top);
+    }
+    &-drizzle {
+      @include header-wave($night-drizzle-top);
+    }
+    &-rain {
+      @include header-wave($night-rain-top);
+    }
+    &-snow {
+      @include header-wave($night-snow-top);
+    }
+    &-thunderstorm {
+      @include header-wave($night-thunderstorm-top);
+    }
+    &-mist, &-smoke, &-dust, &-haze, &-fog, &-squall {
+      @include header-wave($night-mist-top);
+    }
+    &-sand {
+      @include header-wave($night-sand-top);
+    }
+    &-ash {
+      @include header-wave($night-ash-top);
+    }
+    &-tornado {
+      @include header-wave($night-tornado-top);
+    }
+  }
+}

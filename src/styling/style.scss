@@ -1,9 +1,13 @@
 @import url("https://fontlibrary.org//face/hanken");
-@import "variables";
-@import "gradient";
-@import "breakpoints";
 @import "fonts";
+@import "variables";
 @import "mixins";
+@import "breakpoints";
+@import "gradient";
+@import "wave";
+
+
+
 
 // body {
 //   font-family: "HankenBook";
@@ -39,3 +43,25 @@ html,
   // background-size: cover;
 }
 
+:export {
+  dayclear: $day-clear-top;
+  dayclouds: $day-clouds-top;
+  daydrizzle: $day-drizzle-top;
+  dayrain: $day-rain-top;
+  daysnow: $day-snow-top;
+  daythunderstorm: $day-thunderstorm-top;
+  daymist: $day-mist-top;
+  daysand: $day-sand-top;
+  dayash: $day-ash-top;
+  daytornado: $day-tornado-top;
+  nightclear: $night-clear-top;
+  nightclouds: $night-clouds-top;
+  nightdrizzle: $night-drizzle-top;
+  nightrain: $night-rain-top;
+  nightsnow: $night-snow-top;
+  nightthunderstorm: $night-thunderstorm-top;
+  nightmist: $night-mist-top;
+  nightsand: $night-sand-top;
+  nightash: $night-ash-top;
+  nighttornado: $night-tornado-top;
+}

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LocationList from '../location_list';
 import Search from '../search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
-const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCurrPos }) => {
-  const [activeUnit, setActiveUnit] = useState('metric');
+const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCurrPos, weather }) => {
+  const [activeUnit, setActiveUnit] = useState('metric'),
+        [headerClass, setHeaderClass] = useState('');
 
   const unit = {
     metric: { unit: 'metric', deg: 'C', speed: 'm/s' },
@@ -18,8 +19,19 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
     setActiveUnit(unit.unit);
   };
 
+  // const headerClass = weather => {
+  //   console.log(weather);
+  //   return `wave-${weather.weather[0].icon.includes('d') ? 'day' : 'night'}-${weather.weather[0].main.toLowerCase()}`
+  // }
+  // useEffect(() => {
+  //   setHeaderClass(`wave-${weather.weather[0].icon.includes('d') ? 'day' : 'night'}-${weather.weather[0].main.toLowerCase()}`)
+  // }, [])
+
   return (
-    <header>
+    
+    // <header className={headerClass}>
+    <header className={`wave-${weather.weather[0].icon.includes('d') ? 'day' : 'night'}-${weather.weather[0].main.toLowerCase()}`}>
+  
       <div className="right-align">
         <Search
           id="search-bar"
