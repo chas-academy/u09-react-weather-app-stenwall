@@ -2,12 +2,6 @@
   &-day {
     &-clear {
       background: linear-gradient($day-clear-top 10%, $day-clear-bottom);
-      // &-icon:before {
-      //   color: linear-gradient($day-clear-bottom, $day-clear-top);
-      // }
-    }
-    &-hot {
-      background: linear-gradient($day-hot-top 10%, $day-hot-bottom);
     }
     &-clouds {
       background: linear-gradient($day-clouds-top 10%, $day-clouds-bottom);
@@ -41,9 +35,6 @@
   &-night {
     &-clear {
       background: linear-gradient($night-clear-top 10%, $night-clear-bottom);
-    }
-    &-hot {
-      background: linear-gradient($night-hot-top 10%, $night-hot-bottom);
     }
     &-clouds {
       background: linear-gradient($night-clouds-top 10%, $night-clouds-bottom);
