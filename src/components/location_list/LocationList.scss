@@ -1,4 +1,4 @@
-@import '../../styling/style.scss';
+@import "style.scss";
 
 .list-container {
   position: relative;
@@ -28,19 +28,26 @@
       text-decoration: none;
       color: #333333;
       padding: 1rem 1.3rem;
+      margin: 8px 8px 0 8px;
       display: block;
+      cursor: pointer;
 
       &:not(:first-child) {
         border-top: 1px solid #dddddd;
+        margin: 0 8px;
       }
 
-      // &.selected {
-      //   background-color: lightblue;
+      &:last-child {
+        margin: 0 8px 8px 8px;
+      }
 
-      //   &:hover {
-      //     background-color: lightskyblue;
-      //   }
-      // }
+      &.selected {
+        background-color: rgb(175, 206, 225);
+      }
+  
+      &:hover {
+        background-color: rgb(202, 219, 230);
+      }
     }
   }
 
@@ -54,41 +61,6 @@
     }
   }
 }
-
-//   .list-btn {
-//     @include button();
-//     padding: 1rem;
-//     position: relative;
-//     overflow: hidden;
-//     transition: 0.3s;
-
-//     &:after {
-//       position: absolute;
-//       transition: 0.3s;
-//       content: '';
-//       width: 0;
-//       left: 1rem;
-//       bottom: 25%;
-//       height: 2px;
-//       background: #f7f7f7;
-//     }
-
-//     &:hover {
-//       cursor: pointer;
-//       &:after {
-//         width: 85%;
-//         left: 1rem;
-//       }
-//     }
-
-//     span {
-//       font-weight: 600;
-//       vertical-align: middle;
-//       font-size: 1rem;
-//       margin-right: 1rem;
-//     }
-//   }
-// }
 
 // inspiration for hover effect:
 // ------------------------------------------------
