@@ -1,4 +1,4 @@
-@import 'styling/style.scss';
+@import "style.scss";
 
 .overview-row {
   display: flex;
@@ -43,54 +43,100 @@
   gap: 1rem;
   cursor: pointer;
 }
-.details-wrapper {
+
+.details-overview {
+  display: grid;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  color: rgba(0, 0, 0, 0.639);
+  grid-template-areas: "time time time" "temp icon min" "temp icon max";
+  margin-bottom: 1rem;
+  .time {
+    grid-area: time;
+    // text-transform: uppercase;
+    // font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.475);
+    // font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .temp {
+    grid-area: temp;
+    font-size: 3rem;
+    font-weight: 600;
+    // letter-spacing: 0.2rem;
+    color: rgba(0, 0, 0, 0.639);
+  }
+  .wi {
+    grid-area: icon;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  .desc {
+    grid-area: desc;
+  }
+  .min {
+    grid-area: min;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .max {
+    grid-area: max;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.card-wrapper {
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
+  gap: 0.5rem;
 
   .detail-card {
-    padding: 1rem;
+    padding: 0.8rem;
     flex-grow: 1;
     min-width: 25%;
     background: rgba(255, 255, 255, 0.098);
     border-radius: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
 
-    // span:last-child {
-    //   font-size: 5rem;
-    // }
+    div:nth-child(2) { 
+      flex-grow: 1;
+      display: flex;
+      gap: 0.5rem;
+      flex-flow: column nowrap;
+
+      span:first-child {
+        text-transform: lowercase;
+        // font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.475);
+        // font-weight: 600;
+      }
+
+      span:last-child {
+        font-size: 1.5rem;
+        flex: 1 auto;
+      }
+    }
+
+
+    
 
     // &:not(:first-child) {
-
     //   span:nth-child(2) {
     //     color: red;
+    //     flex: 1 auto;
     //   }
     // }
   }
 
   .icon {
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    font-size: 2rem;
     align-self: center;
+
+    &.wi-wind {
+      font-size: 2.5rem;
+    }
   }
-
-  // .table-card {
-  //   flex: 1 2 auto;
-
-  //   &.details-overview,
-  //   &.weather {
-  //     flex: 1 0 50%;
-  //   }
-
-  //   .icon,
-  //   svg.icon {
-  //     margin-right: 1rem;
-  //     width: 2rem;
-  //     height: 2rem;
-  //     vertical-align: middle;
-  //     padding: 0;
-  //     &.wi {
-  //       font-size: xx-large;
-  //     }
-  //   }
-  // }
 }
