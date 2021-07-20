@@ -25,8 +25,8 @@ const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
         <span className="time">{unixTimeToDate(time).toLocaleDateString([], dateOptions)} - {details.description}</span>
         <span className="temp">{Math.round(temp.day)}° {units.deg}</span>
         <i className={`wi wi-owm-${tod}-${details.id} icon`}></i>
-        <span className="min">High: {Math.round(temp.min)}° {units.deg}</span>
-        <span className="max">Low: {Math.round(temp.max)}° {units.deg}</span>
+        <span className="min">High: {Math.round(temp.max)}° {units.deg}</span>
+        <span className="max">Low: {Math.round(temp.min)}° {units.deg}</span>
       </div>
 
       <div className="card-wrapper">
