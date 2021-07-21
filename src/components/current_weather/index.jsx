@@ -4,7 +4,6 @@ import { faHeart, faSun } from '@fortawesome/free-solid-svg-icons';
 import './CurrentWeather.scss';
 
 const CurrentWeather = ({
-  time,
   weather,
   tod,
   units,
@@ -12,9 +11,10 @@ const CurrentWeather = ({
   country,
   clickSaveLocation
 }) => {
-  const unixTimeToDate = unixUTC => {
-    return new Date(unixUTC * 1000);
-  };
+  const unixTimeToDate = (UTC, timeZoneOffset) => {
+    const dateTime = (UTC * 1000) + timeZoneOffset;
+    return new Date(dateTime);
+  };  
 
   const options = {
     time: {
@@ -42,7 +42,7 @@ const CurrentWeather = ({
         <FontAwesomeIcon className="icon" icon={faHeart} />
       </button>
       <p>
-        {country} | {unixTimeToDate(time).toLocaleDateString([], options.date)} | {unixTimeToDate(time).toLocaleTimeString([], options.time)}
+        {country} | {unixTimeToDate(weather.dt, weather.timezone).toLocaleTimeString([], options.date)} | {unixTimeToDate(weather.dt, weather.timezone).toLocaleTimeString([], options.time)}
       </p>
 
       <div className="large-info">
@@ -84,16 +84,11 @@ const CurrentWeather = ({
         <div>
         <span>Wind {weather.wind.gust && '(gust wind)'}</span>
         <span>
-          {Math.round(weather.wind.speed)} {weather.wind.gust && Math.round(weather.wind.gust)}
+          {Math.round(weather.wind.speed)} {weather.wind.gust && `(${Math.round(weather.wind.gust)}) `}
           {units.speed}
         </span>
         </div>
       </div>
-
-      {/* <div>
-        <i className={`wi wi-wind from-${wind.deg}-deg`}></i>
-        Wind: {wind.speed} ({wind.gust}) {units.speed}
-      </div> */}
 
       <div className="detail-card ">
         <i className={`wi wi-umbrella icon wi-fw`}></i>
@@ -134,7 +129,8 @@ const CurrentWeather = ({
         <i className={`wi wi-sunrise icon wi-fw`}></i>
         <div>
         <span>Sunrise</span>
-        <span>{unixTimeToDate(weather.sys.sunrise).toLocaleTimeString([], options.sun)}
+        {/* <span>{unixTimeToDate(weather.sys.sunrise, weather.timezone, options.sun)}</span> */}
+        <span>{unixTimeToDate(weather.sys.sunrise, weather.timezone).toLocaleTimeString([], options.sun)}
         </span>
         </div>
       </div>
@@ -143,7 +139,8 @@ const CurrentWeather = ({
         <i className={`wi wi-sunset icon wi-fw`}></i>
         <div>
         <span>Sunset</span>
-        <span>{unixTimeToDate(weather.sys.sunset).toLocaleTimeString([], options.sun)}
+        {/* <span>{unixTimeToDate(weather.sys.sunset, weather.timezone, options.sun)}</span> */}
+        <span>{unixTimeToDate(weather.sys.sunset, weather.timezone).toLocaleTimeString([], options.sun)}
         </span>
         </div>
       </div>
