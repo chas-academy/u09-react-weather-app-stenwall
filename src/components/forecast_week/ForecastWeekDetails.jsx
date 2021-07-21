@@ -21,12 +21,15 @@ const ForecastWeekDetails = ({ weather, time, temp, details, tod, units }) => {
   return (
     <div className="details-wrapper">
 
-      <div className="details-overview">
-        <span className="time">{unixTimeToDate(time).toLocaleDateString([], dateOptions)} - {details.description}</span>
+      <span className="time">{unixTimeToDate(time).toLocaleDateString([], dateOptions)} - {details.description}</span>
+
+      <div className="details-overview">    
         <span className="temp">{Math.round(temp.day)}° {units.deg}</span>
         <i className={`wi wi-owm-${tod}-${details.id} icon`}></i>
-        <span className="min">High: {Math.round(temp.max)}° {units.deg}</span>
-        <span className="max">Low: {Math.round(temp.min)}° {units.deg}</span>
+        <div className="low-high">
+          <p>High: {Math.round(temp.max)}° {units.deg}</p>
+          <p>Low: {Math.round(temp.min)}° {units.deg}</p>
+        </div>
       </div>
 
       <div className="card-wrapper">
