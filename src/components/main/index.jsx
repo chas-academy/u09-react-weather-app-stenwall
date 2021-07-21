@@ -28,13 +28,14 @@ const Main = ({
       >
         <main>
           <CurrentWeather
-            weather={weather.main}
-            time={weather.dt}
-            details={weather.weather[0]}
-            wind={weather.wind}
-            rain={weather.rain["1h"]}
-            clouds={weather.clouds.all}
-            sun={weather.sys}
+          weather={weather}
+            // weather={weather.main}
+            // time={weather.dt}
+            // details={weather.weather[0]}
+            // wind={weather.wind}
+            // rain={weather.rain["1h"]}
+            // clouds={weather.clouds.all}
+            // sun={weather.sys}
             tod={timeOfDay(weather)}
             units={units}
             city={location.name}

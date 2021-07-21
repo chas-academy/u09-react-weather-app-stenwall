@@ -6,11 +6,6 @@ import './CurrentWeather.scss';
 const CurrentWeather = ({
   time,
   weather,
-  details,
-  wind,
-  rain,
-  clouds,
-  sun,
   tod,
   units,
   city,
@@ -52,44 +47,44 @@ const CurrentWeather = ({
 
       <div className="large-info">
         <span className="temp-current">
-          {Math.round(weather.temp)}°{units.deg}
+          {Math.round(weather.main.temp)}°{units.deg}
         </span>
-        <i className={`wi icon-wi wi-owm-${tod}-${details.id}`}></i> 
+        <i className={`wi icon-wi wi-owm-${tod}-${weather.weather[0].id}`}></i> 
         <div>
-          <p>High: {Math.round(weather.temp_max)}°{units.deg}</p>
-          <p>Low: {Math.round(weather.temp_min)}°{units.deg}</p>
+          <p>High: {Math.round(weather.main.temp_max)}°{units.deg}</p>
+          <p>Low: {Math.round(weather.main.temp_min)}°{units.deg}</p>
         </div>
       </div>
 
 
       <p>
-        <i>Over here, it's {details.description}!</i>
+        <i>Over here, it's {weather.weather[0].description}!</i>
       </p>
 
       <div className="card-wrapper">
 
-      <div className="detail-card feels-like">
+      <div className="detail-card">
         <i className={`wi wi-thermometer icon wi-fw`}></i>
         <div>
         <span>Feels like</span>
-        <span>{Math.round(weather.feels_like)}° {units.deg}</span>
+        <span>{Math.round(weather.main.feels_like)}° {units.deg}</span>
         </div>
       </div>
 
-      <div className="detail-card humidity">
+      <div className="detail-card">
         <i className={`wi wi-humidity icon wi-fw`}></i>
         <div>
         <span>Humidity</span>
-        <span>{weather.humidity} %</span>
+        <span>{weather.main.humidity} %</span>
         </div>
       </div>
 
-      <div className="detail-card wind">
-        <i className={`wi wi-wind from-${wind.deg}-deg icon wi-fw`}></i>
+      <div className="detail-card">
+        <i className={`wi wi-wind from-${weather.wind.deg}-deg icon wi-fw`}></i>
         <div>
-        <span>Wind {wind.gust && <span>(gust wind)</span>}</span>
+        <span>Wind {weather.wind.gust && '(gust wind)'}</span>
         <span>
-          {Math.round(wind.speed)} {wind.gust && (<span>{Math.round(wind.gust)} </span>)}
+          {Math.round(weather.wind.speed)} {weather.wind.gust && Math.round(weather.wind.gust)}
           {units.speed}
         </span>
         </div>
@@ -100,19 +95,19 @@ const CurrentWeather = ({
         Wind: {wind.speed} ({wind.gust}) {units.speed}
       </div> */}
 
-      <div className="detail-card rain">
+      <div className="detail-card ">
         <i className={`wi wi-umbrella icon wi-fw`}></i>
         <div>
         <span>Rain</span>
-        <span>{Math.round(rain) || '0'} mm</span>
+        <span>{(weather.rain && Math.round(weather.rain["1h"])) || '0'} mm</span>
         </div>
       </div>
 
-      <div className="detail-card rain">
+      <div className="detail-card">
         <i className={`wi wi-cloud icon wi-fw`}></i>
         <div>
         <span>Cloudiness</span>
-        <span>{Math.round(clouds) || '0'} %</span>
+        <span>{(weather.clouds && Math.round(weather.clouds.all)) || '0'} %</span>
         </div>
       </div>
 
@@ -131,7 +126,7 @@ const CurrentWeather = ({
         <i className={`wi wi-barometer icon wi-fw`}></i>
         <div>
         <span>Pressure</span>
-        <span>{weather.pressure} hPa</span>
+        <span>{weather.main.pressure} hPa</span>
         </div>
       </div>
 
@@ -139,7 +134,7 @@ const CurrentWeather = ({
         <i className={`wi wi-sunrise icon wi-fw`}></i>
         <div>
         <span>Sunrise</span>
-        <span>{unixTimeToDate(sun.sunrise).toLocaleTimeString([], options.sun)}
+        <span>{unixTimeToDate(weather.sys.sunrise).toLocaleTimeString([], options.sun)}
         </span>
         </div>
       </div>
@@ -148,7 +143,7 @@ const CurrentWeather = ({
         <i className={`wi wi-sunset icon wi-fw`}></i>
         <div>
         <span>Sunset</span>
-        <span>{unixTimeToDate(sun.sunset).toLocaleTimeString([], options.sun)}
+        <span>{unixTimeToDate(weather.sys.sunset).toLocaleTimeString([], options.sun)}
         </span>
         </div>
       </div>
