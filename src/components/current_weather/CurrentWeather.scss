@@ -1,9 +1,6 @@
 @import "../../styling/style.scss";
 
 .current-weather {
-  .icon-wi {
-    font-size: 6rem;
-  }
   
   // .icon-wi {
   //   position: fixed;
@@ -14,23 +11,171 @@
   h2 {
     display: inline-block;
     margin: 0 1rem 0 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 200;
   }
 
   p {
-    margin: 0;
+    margin: 0 0 2rem 0;
     font-size: 1.3rem;
     font-weight: 100;
   }
+
   .save-btn {
     @include button();
     padding: 1rem;
     display: inline-block;
   
     .icon {
-      width: 2.2rem;
-      height: 2.2rem;
+      width: 2.6rem;
+      height: 2.6rem;
     }
   }
+
+  // .details-overview {
+  //   display: grid;
+  //   padding: 0.5rem;
+  //   gap: 0.5rem;
+  //   color: rgba(0, 0, 0, 0.639);
+  //   grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  //   // grid-template-areas: "time time time" "temp icon min" "temp icon max";
+  //   margin: 1rem 0;
+    
+  //   .temp {
+  //     // grid-area: temp;
+  //     font-size: 3rem;
+  //     font-weight: 600;
+  //     // letter-spacing: 0.2rem;
+  //     color: rgba(0, 0, 0, 0.639);
+  //   }
+  //   .wi {
+  //     // grid-area: icon;
+  //     font-size: 3rem;
+  //     font-weight: 600;
+  //     margin-left: 1.2rem;
+  //   }
+  //   // .desc {
+  //   //   // grid-area: desc;
+  //   // }
+  //   p {
+  //     font-size: 1rem;
+  //     font-weight: 600;
+  //     margin-top: 0;
+  //   }
+
+  .large-info {
+    display: grid;
+    // padding: 2rem 0;
+    gap: 2rem;
+    color: rgba(0, 0, 0, 0.639);
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    height: 100%;
+
+    .icon-wi {
+      padding-top: 0.5rem;
+      font-size: 6.5rem;
+      margin-left: 3rem;
+    }
+  
+    .temp-current {
+      font-size: 8rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+  }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.5rem;
+  
+    .detail-card {
+      padding: 0.8rem;
+      // flex-grow: 1;
+      // min-width: 25%;
+      background: rgba(255, 255, 255, 0.098);
+      border-radius: 5px;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 0.5rem;
+  
+      div:nth-child(2) { 
+        flex-grow: 1;
+        display: flex;
+        gap: 0.5rem;
+        flex-flow: column nowrap;
+  
+        span:first-child {
+          text-transform: lowercase;
+          // font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.475);
+          // font-weight: 600;
+        }
+  
+        span:last-child {
+          font-size: 1.5rem;
+          flex: 1 auto;
+        }
+      }
+    }
+  
+    .icon {
+      font-size: 2rem;
+      align-self: center;
+  
+      &.wi-wind {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  // .card-wrapper {
+  //   display: flex;
+  //   flex-flow: row wrap;
+  //   gap: 0.5rem;
+  
+  //   .detail-card {
+  //     padding: 0.8rem;
+  //     flex-grow: 1;
+  //     min-width: 25%;
+  //     background: rgba(255, 255, 255, 0.098);
+  //     border-radius: 5px;
+  //     display: flex;
+  //     flex-flow: row nowrap;
+  //     gap: 0.5rem;
+  
+  //     div:nth-child(2) { 
+  //       flex-grow: 1;
+  //       display: flex;
+  //       gap: 0.5rem;
+  //       flex-flow: column nowrap;
+  
+  //       span:first-child {
+  //         text-transform: lowercase;
+  //         // font-size: 0.9rem;
+  //         color: rgba(255, 255, 255, 0.475);
+  //         // font-weight: 600;
+  //       }
+  
+  //       span:last-child {
+  //         font-size: 1.5rem;
+  //         flex: 1 auto;
+  //       }
+  //     }
+  //   }
+  
+  //   .icon {
+  //     font-size: 2rem;
+  //     align-self: center;
+  
+  //     &.wi-wind {
+  //       font-size: 2.5rem;
+  //     }
+  //   }
+  // }
+  
 }
