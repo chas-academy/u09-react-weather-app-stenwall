@@ -1,7 +1,15 @@
 .warning {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  border-radius: 25px;
   color: #d89400;
   padding: 1rem;
   background-color: #ffdaba;
   border: 1px solid #d89400;
-  margin-bottom: 2rem;
+  z-index: 1000;
+
+  &.hidden {
+    display: none;
+  }
 }
