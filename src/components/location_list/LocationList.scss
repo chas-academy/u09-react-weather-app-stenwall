@@ -51,6 +51,13 @@
     }
   }
 
+  .list-tip {
+    left: -120%;
+    .list-arrow {
+      left: 60%;
+    }
+  }
+
   .list-btn {
     @include button();
     padding: 1rem;

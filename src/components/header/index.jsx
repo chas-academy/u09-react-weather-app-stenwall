@@ -61,13 +61,13 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
           </Tooltip>
         </div>
 
-        <Tooltip text="Saved locations" posClassBox="list" posClassArrow="list-arrow">
+        {/* <Tooltip text="Saved locations" posClassBox="list" posClassArrow="list-arrow"> */}
         <LocationList
           locations={locations}
           current={current}
           onSelect={onSelect}
         />
-        </Tooltip>
+        {/* </Tooltip> */}
 
         <Tooltip text="Current location" posClassBox="current" posClassArrow="curr-arrow">
         <button

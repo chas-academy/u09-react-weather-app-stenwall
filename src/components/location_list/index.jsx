@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './LocationList.scss';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import Tooltip from '../tooltip';
 
 const LocationList = ({ locations, onSelect, current }) => {
 // const LocationList = () => {
@@ -27,9 +28,11 @@ const LocationList = ({ locations, onSelect, current }) => {
   return (
     <>
       <div className="list-container">
+      <Tooltip text="Saved locations" posClassBox="list-tip" posClassArrow="list-arrow">
         <button onClick={openList} className="list-btn" aria-label="List of saved locations">
           <FontAwesomeIcon className="icon" icon={faHeart} />
         </button>
+      </Tooltip>
         <ul
           ref={listRef}
           className={`list ${isActive ? 'active' : null}`}
