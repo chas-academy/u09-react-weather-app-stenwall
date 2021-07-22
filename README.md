@@ -25,12 +25,38 @@ The finished solution must:
 
 - [x] Use a weather API, e.g. [SMHI](https://opendata.smhi.se/apidocs/), [YR.no](https://api.met.no/), [OpenWeatherMaps](https://openweathermap.org/api)
 - [x] Take advantage of positioning via geolocation in the browser
-- [ ] Have design, layout and disposition based on [weather.com](https://weather.com/weather/today), or similar applications
+- [x] Have design, layout and disposition based on [weather.com](https://weather.com/weather/today), or similar applications
 
 ## Deployment
 
 ## Notes
 
+### Design
+
+- I know that the site could have been way more responsive and better looking on smaller devices. I decided to not worry to much about that though, the site IS responsive and working and you can get the info you need when you see it in a mobile phone, it just looks ugly. Beacause I had a plan to make it more responsive, I made hooks for using breakpoints in react (not just in scss), I had a plan with especially the weekly forecast table. I never used thoose hooks, but I committed them now anyway, as I might need something similiar in the future and the code took a bit of googleing.
+
+### Other notes
+
+- There is a bug where the wind changes degree (direction) if you switch units between fahrenheit and celsius. I'm not sure why, but it might just be some thing wrong with the API.
+- I have spent several hours trying to fix so the time matches the local timezone to the city that's chosen, but I've failed. Ht solution I landed in was to add the timezone option to options in `toLocaleTimeString()`, but I didn't find a simple way to do so (as far as my understanding goes, you have to use the names from the IANA timezone database, and I don't know how to translate the timezone offset I get from the API to a name like that).
+- I probably should have made a separate component for all the detail-cards, but I'm trying to stay out of all the small fixes. There's a lot of extra code now unfortunately.
+
+### Tools & sources
+
+Styling:
+[Box-shadows](https://shadows.brumm.af/)
+[Gradients](https://cssgradient.io/)
+
+Font:
+[Hanken](https://fontlibrary.org/en/font/hanken#Hanken-Book)
+
+Icons:
+[Weather Icons](https://erikflowers.github.io/weather-icons/)
+
+Other tools:
+[URL-encoder for SVG](https://yoksel.github.io/url-encoder/)
+[Awesome React](https://github.com/enaqx/awesome-react)
+[Favicon generator](https://favicon.io/)
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
