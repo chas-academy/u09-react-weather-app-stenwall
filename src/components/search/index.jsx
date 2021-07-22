@@ -15,31 +15,34 @@ const Search = ({ id, placeholder, onSearch }) => {
   }
 
   return (
-    <>
-      <form onSubmit={searchLocation}>
-        <label htmlFor={id}>
-          {placeholder}
-        </label>
-        <input
-          id={id}
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          // name="search"
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button
-          type="submit"
-          disabled={disableSearch}
-          // onClick={searchLocation}
-        >
-          <FontAwesomeIcon
+    <form
+      className="search-bar"
+      onSubmit={searchLocation}
+    >
+
+      <label htmlFor={id}>
+        {placeholder}
+      </label>
+
+      <input
+        id={id}
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+
+      <button
+        type="submit"
+        disabled={disableSearch}
+      >
+        <FontAwesomeIcon
           className="icon"
           icon={faSearch}
         />
-        </button>
-      </form>
-    </>
+      </button>
+
+    </form>
   );
 }
 

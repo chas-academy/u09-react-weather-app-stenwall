@@ -5,7 +5,6 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '../tooltip';
 
 const LocationList = ({ locations, onSelect, current }) => {
-// const LocationList = () => {
   const listRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
 
@@ -28,8 +27,16 @@ const LocationList = ({ locations, onSelect, current }) => {
   return (
     <>
       <div className="list-container">
-      <Tooltip text="Saved locations" posClassBox="list-tip" posClassArrow="list-arrow">
-        <button onClick={openList} className="list-btn" aria-label="List of saved locations">
+      <Tooltip
+        text="Saved locations"
+        posClassBox="list-tip"
+        posClassArrow="list-arrow"
+      >
+        <button
+          onClick={openList}
+          className="list-btn"
+          aria-label="List of saved locations"
+        >
           <FontAwesomeIcon className="icon" icon={faHeart} />
         </button>
       </Tooltip>
@@ -46,6 +53,7 @@ const LocationList = ({ locations, onSelect, current }) => {
               {location.name}
             </li>
           ))}
+
         </ul>
       </div>
     </>

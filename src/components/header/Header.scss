@@ -22,54 +22,10 @@ header {
     justify-content: flex-end;
   }
 
-  form {
-    flex-grow: 2;
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
-    background: hsla(0, 0%, 100%, 0.2);
-    height: 2.375rem;
-    max-width: 20rem;
-    padding-left: 1rem;
-    margin: 0 1rem;
-
-    label {
-      @include hide();
-    }
-
-    input {
-      flex-grow: 2;
-      border: none;
-      background-color: transparent;
-      text-align: center;
-      color: $font-color;
-      font-size: 1rem;
-      font-family: "HankenBook";
-
-      &::placeholder {
-        color: $font-color;
-      }
-
-      &:focus {
-        outline: none;
-
-        &::placeholder {
-          color: transparent;
-        }
-      }
-    }
-
-    button {
-      @include button();
-      width: 3rem;
-    }
-  }
-
   .button-container {
     font-size: 1.5rem;
 
     .divider {
-      // vertical-align: top;
       font-size: 1.5rem;
       bottom: 1rem;
       position: absolute;
@@ -79,10 +35,7 @@ header {
       @include button();
       width: 3rem;
       height: 3rem;
-      // font-size: 1.5rem;
       opacity: 0.5;
-      // vertical-align: top;
-      // padding-top: 1rem;
 
       .icon {
         font-size: 2.6rem;
@@ -124,16 +77,4 @@ header {
       left: 68%;
     }
   }
-
-  // // wave!
-  // @include wave($header-color);
-  // position: fixed;
-  // top: 0;
-  // width: 100vw;
-  // height: 200px;
-  // // background-image: url("../../assets/wave.svg");
-  // // background-image: url("data:image/svg+xml,%3C%3Fxml version="1.0" standalone="no"%3F%3E%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath class="wave" fill-opacity="1" d="M0,192L30,208C60,224,120,256,180,272C240,288,300,288,360,272C420,256,480,224,540,218.7C600,213,660,235,720,229.3C780,224,840,192,900,181.3C960,171,1020,181,1080,154.7C1140,128,1200,64,1260,32C1320,0,1380,0,1410,0L1440,0L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"%3E%3C/path%3E%3C/svg%3E");
-  // background-repeat: no-repeat;
-  // background-size: contain;
-  // background-color: transparent;
 }

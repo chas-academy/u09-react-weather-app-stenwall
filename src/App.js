@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FETCH } from '../src/services/WeatherService';
-// import ApiCaller from './components/api_caller';
 import MessageError from './components/message_error';
 import MessageWarning from './components/message_warning';
 import Main from './components/main';
@@ -47,7 +46,6 @@ const App = () => {
           const lon = position.coords.longitude;
           const lat = position.coords.latitude;
           fetchPositionData(`lat=${lat}&lon=${lon}`);
-          console.log('position updated!');
         },
         error => {
           console.error(`ERROR (${error.code}): ${error.message}`);
@@ -69,11 +67,10 @@ const App = () => {
     FETCH(`weather?${query}`)
       .then(data => {
         setCurrentLocation(data);
-        console.log(data.name);
       })
       .catch(error => {
-        console.error(`Error fetching data with query: '${error}'`);
-        setError(query);
+        console.error(`Error fetching data with query: '${query}'`);
+        setError(`Can't find a location called '${query.substring(2)}'`);
       })
   };
 
@@ -118,6 +115,8 @@ const App = () => {
     }
 
     setLoading(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, currentLocation]);
 
   useEffect(() => {
@@ -161,6 +160,7 @@ const App = () => {
 
         </>
       )}
+
       {loading && <Loading />}
     </>
   );

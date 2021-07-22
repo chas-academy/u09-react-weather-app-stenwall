@@ -30,3 +30,4 @@ export default Tooltip;
 // source tooltip component + scss
 //------------------------------------------------------------------------
 // https://www.30secondsofcode.org/react/s/tooltip
+// https://paladini.dev/posts/how-to-make-an-extremely-reusable-tooltip-component-with-react--and-nothing-else/

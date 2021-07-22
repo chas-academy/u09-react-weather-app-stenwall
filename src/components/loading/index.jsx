@@ -6,7 +6,10 @@ import './Loading.scss';
 const Loading = () => {
   return (
     <div className="loading-wrapper">
-      <FontAwesomeIcon className="icon" icon={faSpinner} />
+      <FontAwesomeIcon
+        className="icon"
+        icon={faSpinner}
+      />
     </div>
   );
 }

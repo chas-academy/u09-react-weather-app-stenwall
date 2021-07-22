@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './ForecastWeek.scss';
 import ForecastWeekDetails from './ForecastWeekDetails';
 import ForecastWeekOverview from './ForecastWeekOverview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import './ForecastWeek.scss';
 
 const ForecastWeek = ({ weather, units }) => {
   const [isActive, setIsActive] = useState(false);

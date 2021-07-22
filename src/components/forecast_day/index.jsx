@@ -14,6 +14,7 @@ const options = {
 const ForecastDay = ({ weather, time, details, tod, units }) => {
   return (
     <div className="hour-card">
+
       <div className="day-time">{unixTimeToDate(time).toLocaleTimeString([], options)}</div>
 
       <div>
@@ -23,6 +24,7 @@ const ForecastDay = ({ weather, time, details, tod, units }) => {
       <div className="temp">
         {Math.round(weather.temp)}<span>&deg;</span>{units.deg}
       </div>
+
     </div>
   );
 };

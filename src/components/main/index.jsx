@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FETCH } from '../../services/WeatherService';
+import React from 'react';
 import ForecastDay from '../forecast_day';
 import ForecastWeek from '../forecast_week';
 import CurrentWeather from '../current_weather';
 import './Main.scss';
-import Loading from '../loading';
 
 const Main = ({
   location,
@@ -28,14 +26,7 @@ const Main = ({
       >
         <main>
           <CurrentWeather
-          weather={weather}
-            // weather={weather.main}
-            // time={weather.dt}
-            // details={weather.weather[0]}
-            // wind={weather.wind}
-            // rain={weather.rain["1h"]}
-            // clouds={weather.clouds.all}
-            // sun={weather.sys}
+            weather={weather}
             tod={timeOfDay(weather)}
             units={units}
             city={location.name}
@@ -72,6 +63,7 @@ const Main = ({
                 ))}
             </ol>
           </div>
+
         </main>
       </div>
     </>

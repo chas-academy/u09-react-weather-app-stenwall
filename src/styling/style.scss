@@ -6,14 +6,6 @@
 @import "gradient";
 @import "wave";
 
-
-
-
-// body {
-//   font-family: "HankenBook";
-//   font-weight: normal;
-//   font-style: normal;
-// }
 *,
 *::before,
 *::after {
@@ -24,44 +16,22 @@ html,
 #root {
   margin: 0;
   padding: 0;
-  // height: 100%;
-  // width: 100%;
   color: whitesmoke;
   font-family: "HankenBook";
   font-weight: normal;
   font-style: normal;
 }
 
+body {
+  margin: 0;
+}
+
 #wrapper {
   background-attachment: fixed;
   margin-top: 0;
   margin-bottom: 0;
-  // height: 100vh;
   width: 100vw;
   overflow-y: auto;
 	overflow-x: hidden;
-  // background-size: cover;
-}
 
-:export {
-  dayclear: $day-clear-top;
-  dayclouds: $day-clouds-top;
-  daydrizzle: $day-drizzle-top;
-  dayrain: $day-rain-top;
-  daysnow: $day-snow-top;
-  daythunderstorm: $day-thunderstorm-top;
-  daymist: $day-mist-top;
-  daysand: $day-sand-top;
-  dayash: $day-ash-top;
-  daytornado: $day-tornado-top;
-  nightclear: $night-clear-top;
-  nightclouds: $night-clouds-top;
-  nightdrizzle: $night-drizzle-top;
-  nightrain: $night-rain-top;
-  nightsnow: $night-snow-top;
-  nightthunderstorm: $night-thunderstorm-top;
-  nightmist: $night-mist-top;
-  nightsand: $night-sand-top;
-  nightash: $night-ash-top;
-  nighttornado: $night-tornado-top;
 }
