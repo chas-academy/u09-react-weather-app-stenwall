@@ -68,16 +68,24 @@ header {
   .button-container {
     font-size: 1.5rem;
 
+    .divider {
+      // vertical-align: top;
+      font-size: 1.5rem;
+      bottom: 1rem;
+      position: absolute;
+    }
+
     button {
       @include button();
       width: 3rem;
       height: 3rem;
-      font-size: 1.5rem;
+      // font-size: 1.5rem;
       opacity: 0.5;
-      vertical-align: middle;
+      // vertical-align: top;
+      // padding-top: 1rem;
 
       .icon {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
       }
 
       &.active {
@@ -93,6 +101,34 @@ header {
     .icon {
       width: 1.5rem;
       height: 1.5rem;
+    }
+  }
+
+  .celsius {
+    left: -30%;
+    .cel-arrow {
+      left: 50%;
+    }
+  }
+
+  .fahrenheit {
+    left: -60%;
+    .far-arrow {
+      left: 50%;
+    }
+  }
+
+  .list {
+    left: -120%;
+    .list-arrow {
+      left: 60%;
+    }
+  }
+
+  .current {
+    left: -150%;
+    .curr-arrow {
+      left: 68%;
     }
   }
 

@@ -4,6 +4,7 @@ import Search from '../search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
+import Tooltip from '../tooltip';
 
 const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCurrPos, weather }) => {
   const [activeUnit, setActiveUnit] = useState('metric'),
@@ -39,6 +40,7 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
           onSearch={onSearch}
         />
         <div className="button-container">
+          <Tooltip text="Celsius" posClassBox="celsius" posClassArrow="cel-arrow">
           <button
             aria-label="Set units to metric/celsius"
             className={activeUnit === 'metric' ? 'active' : null}
@@ -46,7 +48,9 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
           >
             <i className={`wi wi-celsius icon`}></i>
           </button>
-          <span>|</span>
+          </Tooltip>
+          <span className="divider">|</span>
+          <Tooltip text="Fahrenheit" posClassBox="fahrenheit" posClassArrow="far-arrow">
           <button
             aria-label="Set units to imperial/fahrenheit"
             className={activeUnit === 'imperial' ? 'active' : null}
@@ -54,14 +58,18 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
           >
             <i className={`wi wi-fahrenheit icon`}></i>
           </button>
+          </Tooltip>
         </div>
 
+        <Tooltip text="Saved locations" posClassBox="list" posClassArrow="list-arrow">
         <LocationList
           locations={locations}
           current={current}
           onSelect={onSelect}
         />
+        </Tooltip>
 
+        <Tooltip text="Current location" posClassBox="current" posClassArrow="curr-arrow">
         <button
           aria-label="Get info about the current location"
           className="location-btn"
@@ -69,6 +77,8 @@ const Header = ({ onSearch, setUnits, locations, current, onSelect, clickShowCur
         >
           <FontAwesomeIcon className="icon" icon={faMapMarkerAlt} />
         </button>
+        </Tooltip>
+
       </div>
     </header>
   );

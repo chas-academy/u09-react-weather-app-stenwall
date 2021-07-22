@@ -1,13 +1,7 @@
 @import "../../styling/style.scss";
 
 .current-weather {
-  
-  // .icon-wi {
-  //   position: fixed;
-  //   bottom: 5vh;
-  //   right: 50vw;
-  //   font-size: 50rem;
-  // }
+
   h2 {
     display: inline-block;
     margin: 0 1rem 0 0;
@@ -29,6 +23,15 @@
     .icon {
       width: 2.6rem;
       height: 2.6rem;
+    }
+  }
+
+  .add-list {
+    top: calc(-55% + 5px);
+    .add-list-arrow {
+      top: 100%;
+      left: 30%;
+      border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
     }
   }
 

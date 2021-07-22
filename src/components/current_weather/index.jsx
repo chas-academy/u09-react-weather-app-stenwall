@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faSun } from '@fortawesome/free-solid-svg-icons';
 import './CurrentWeather.scss';
+import Tooltip from '../tooltip';
 
 const CurrentWeather = ({
   weather,
@@ -38,9 +39,12 @@ const CurrentWeather = ({
   return (
     <div className="current-weather">
       <h2>{city.toUpperCase()}</h2>
-      <button className="save-btn" onClick={clickSaveLocation} aria-label="Add current location to saved locations list">
-        <FontAwesomeIcon className="icon" icon={faHeart} />
-      </button>
+      <Tooltip text="Add to list" posClassBox="add-list" posClassArrow="add-list-arrow">
+        <button className="save-btn" onClick={clickSaveLocation} aria-label="Add current location to saved locations list">  
+          <FontAwesomeIcon className="icon" icon={faHeart} />
+        </button>
+      </Tooltip>
+      
       <p>
         {country} | {unixTimeToDate(weather.dt, weather.timezone).toLocaleTimeString([], options.date)} | {unixTimeToDate(weather.dt, weather.timezone).toLocaleTimeString([], options.time)}
       </p>
