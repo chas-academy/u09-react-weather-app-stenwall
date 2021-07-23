@@ -45,19 +45,24 @@ The finished solution must:
 ### Tools & sources
 
 Styling:
+
 [Box-shadows](https://shadows.brumm.af/)
 [Gradients](https://cssgradient.io/)
 
 Font:
+
 [Hanken](https://fontlibrary.org/en/font/hanken#Hanken-Book)
 
 Icons:
+
 [Weather Icons](https://erikflowers.github.io/weather-icons/)
 
 Other tools:
+
 [URL-encoder for SVG](https://yoksel.github.io/url-encoder/)
 [Awesome React](https://github.com/enaqx/awesome-react)
 [Favicon generator](https://favicon.io/)
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
