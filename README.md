@@ -34,6 +34,7 @@ The finished solution must:
 ### Design
 
 - I know that the site could have been way more responsive and better looking on smaller devices. I decided to not worry to much about that though, the site IS responsive and working and you can get the info you need when you see it in a mobile phone, it just looks ugly. Beacause I had a plan to make it more responsive, I made hooks for using breakpoints in react (not just in scss), I had a plan with especially the weekly forecast table. I never used thoose hooks, but I committed them now anyway, as I might need something similiar in the future and the code took a bit of googleing.
+- I had a footer, and this is really a mystery to me, I couldn't get it to stick to the bottom of the document. I made the parent element position relative, I made the footer position absolute. It kept behaving like it was fixed. I think I tried almost everything. I can't understand why it's not working.
 
 ### Other notes
 
