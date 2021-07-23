@@ -29,6 +29,8 @@ The finished solution must:
 
 ## Deployment
 
+The site is deployed on Netlify: [focused-cray-e58cb9.netlify.app](https://focused-cray-e58cb9.netlify.app/)
+
 ## Notes
 
 ### Design
@@ -46,22 +48,21 @@ The finished solution must:
 
 Styling:
 
-[Box-shadows](https://shadows.brumm.af/)
-[Gradients](https://cssgradient.io/)
+- [Box-shadows](https://shadows.brumm.af/)
+- [Gradients](https://cssgradient.io/)
 
 Font:
-
-[Hanken](https://fontlibrary.org/en/font/hanken#Hanken-Book)
+- [Hanken](https://fontlibrary.org/en/font/hanken#Hanken-Book)
 
 Icons:
-
-[Weather Icons](https://erikflowers.github.io/weather-icons/)
+- [Weather Icons](https://erikflowers.github.io/weather-icons/)
+- [Font Awesome](https://fontawesome.com/v5/changelog/latest)
 
 Other tools:
 
-[URL-encoder for SVG](https://yoksel.github.io/url-encoder/)
-[Awesome React](https://github.com/enaqx/awesome-react)
-[Favicon generator](https://favicon.io/)
+- [URL-encoder for SVG](https://yoksel.github.io/url-encoder/)
+- [Awesome React](https://github.com/enaqx/awesome-react)
+- [Favicon generator](https://favicon.io/)
 
 ---
 
